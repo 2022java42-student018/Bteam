@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>貸出フォーム</title>
+</head>
+
+<body>
+<div style="text-align:center;">
+	<h1>貸出フォーム</h1> 
+    <form action="/bteam/RentalServlet" method="post">
+        <div class="box">
+            会員ID:<input type="text" name="cID"><br>
+           	資料ID:<input type="text" name="dID"><br>
+        	 <input type="submit" value="送信">
+        	 <input type ="hidden" name="action" value = "ren" >
+        </div>
+    </form>
+    <h1>返却フォーム</h1>
+    <form action="/bteam/RentalServlet" method="post">
+        <div class="box">
+            資料ID:<input type="text" name="dID"><br>
+            <input type="submit" value="送信">
+            <input type ="hidden" name="ret">
+        </div>
+    </form>
+
+    <button type=“button” onclick="/bteam/TopHTML">Topへ</button>
+ </div>
+</body>
+
+</html>
