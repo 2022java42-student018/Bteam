@@ -9,9 +9,13 @@
 <body>
 	<table>
 		<tr>
-			<td><%@ include file="/Counter.html" %></td>
-			<td><%@ include file="/CustomerManagement.html" %></td>
-			<td><%@ include file="/DocumentManagement.html" %></td>
+			<td></td>
+			<td><jsp:include page="/Counter.jsp" /></td>
+			<td></td>
+			<td><jsp:include page="/CustomerManegement.jsp" /></td>
+			<td></td>
+			<td><jsp:include page="/DocumentManegement.jsp" /></td>
+			<td></td>
 		</tr>
 	</table>
 </body>
