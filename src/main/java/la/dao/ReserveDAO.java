@@ -36,14 +36,14 @@ public class ReserveDAO {
 			st.setInt(1, dID);
 
 			try (// SQLの実行
-					ResultSet rs = st.executeQuery();){
+					ResultSet rs = st.executeQuery();) {
 				if (rs.next()) {
 					Confirmation = false;
-			} else {
+				} else {
 					Confirmation = true;
 				}
-                  return Confirmation;
-				
+				return Confirmation;
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("会員IDが間違っています。");
