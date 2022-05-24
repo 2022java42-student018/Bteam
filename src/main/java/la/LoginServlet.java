@@ -15,6 +15,7 @@ import la.dao.DAOException;
 public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			request.setCharacterEncoding("UTF-8");
 			
 		}catch(DAOException e) {
 			
