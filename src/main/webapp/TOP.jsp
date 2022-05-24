@@ -7,11 +7,11 @@
 <title>管理者TOP</title>
 </head>
 <body>
-	<table>
+	<table align="center"  cellspacing="30">
 		<tr>
-			<td><%@ include file="/Counter.html" %></td>
-			<td><%@ include file="/CustomerManagement.html" %></td>
-			<td><%@ include file="/DocumentManagement.html" %></td>
+			<td width="300" class="left" ><jsp:include page="/Counter.jsp" /></td>
+			<td width="300" class="center" ><jsp:include page="/CustomerManegement.jsp" /></td>
+			<td width="300" class="right"><jsp:include page="/DocumentManegement.jsp" /></td>
 		</tr>
 	</table>
 </body>
