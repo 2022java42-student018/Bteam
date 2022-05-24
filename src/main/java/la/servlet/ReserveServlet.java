@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import la.dao.DaoReserve;
+
 @WebServlet("/ReserveServlet")
 public class ReserveServlet extends HttpServlet {
 
@@ -17,13 +19,17 @@ public class ReserveServlet extends HttpServlet {
 		// パラメータ
 		String action = request.getParameter("action");
 		String dID;
+		
+		//モデルのDAOの解決
+		DaoReserve dao = new DaoReserve();
+		
 		// 予約可能
 		if (action.equals("reserve")) {
 			dID = request.getParameter("dID");
-			if (dao.reserve)
-				gotoPage(request, response, "reserve.html");
+		if(dao)
+		gotoPage(request, response, "reserve.html");}
 		}
-	}
+	
 
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
