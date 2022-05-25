@@ -1,4 +1,4 @@
-package la;
+package la.servlet;
 
 import java.io.IOException;
 
