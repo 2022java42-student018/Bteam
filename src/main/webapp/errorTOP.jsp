@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>エラー</title>
 </head>
 <body>
-
+	<div style = "text-align: center">
+		<h1>${message}</h1>
+		<button onclick="location.href='TOP.jsp'">TOPへ</button>
+	</div>	
 </body>
 </html>

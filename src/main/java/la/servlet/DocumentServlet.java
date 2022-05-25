@@ -14,8 +14,8 @@ import la.bean.ItemBean;
 import la.dao.DAOException;
 import la.dao.ItemDAO;
 
-@WebServlet("/ItemServlet")
-public class ItemServlet extends HttpServlet {
+@WebServlet("/DocumentServlet")
+public class DocumentServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
