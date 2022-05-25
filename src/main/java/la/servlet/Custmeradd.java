@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import la.bean.customerBean;
 
-
 @WebServlet("/CustmerServlet")
 public class Custmeradd extends HttpServlet {
 
-       
-  
-    public Custmeradd() {
-        super();
-       
-    }	
+	public Custmeradd() {
+		super();
+
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
@@ -52,9 +50,8 @@ public class Custmeradd extends HttpServlet {
 
 }
 
-  protected void doPost(HttpServletRequest request , HttpServletResponse response)
-                 throws ServletException , IOException {
-	  doGet(request , response); 
-        } 
-  }
-  }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+}}
