@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +38,6 @@
  </form>
 
 
-<button type="button"
-onclick = "">
-</button>
 
 </body>
 </html>

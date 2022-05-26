@@ -1,16 +1,16 @@
 package la.bean;
 import java.io.Serializable;
 
-public class ItemBean implements Serializable{
+public class DocumentBean implements Serializable{
 	
 private int dID;
 private String dName;
 private String aName;
 private String pName;
-private int renCID;
+private String renCID;
 
 
-public ItemBean(int dID, String dName, String aName, String pName, int renCID) {
+public DocumentBean(int dID, String dName, String aName, String pName, String renCID) {
 	this.dID = dID;
 	this.dName=dName;
 	this.aName=aName;
@@ -18,7 +18,12 @@ public ItemBean(int dID, String dName, String aName, String pName, int renCID) {
 	this.renCID=renCID;
 }
 
-public ItemBean() {
+public DocumentBean(int dID) {
+	this.dID=dID;
+}
+
+
+public DocumentBean() {
 	
 }
 
@@ -56,11 +61,11 @@ public void setpName(String pName) {
 
 
 
-public int getrenCID() {
+public String getrenCID() {
 	return renCID;
 }
 
-public void setrenCID(int renCID) {
+public void setrenCID(String renCID) {
 	this.renCID = renCID;
 }
 }

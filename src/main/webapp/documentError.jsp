@@ -8,10 +8,12 @@
 </head>
 <body>
 
-<h1>${message}</h1>
+<br><br>
 
-<button type="button"
-onclick = "">
-</button>
+<h1 align = "center">${message}</h1>
+<br><br>
+
+<a href ="/Bteam/documentSearch.jsp"><h3 align = "center">検索TOPへ</h3></a>
+
 </body>
 </html>
