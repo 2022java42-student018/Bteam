@@ -22,12 +22,12 @@
 	</table>
 	<a href="/Bteam/lend_doc.jsp">貸出中資料</a>
 	<input type="hidden" name="action" value="${cust.cID }">
-	
+	getparrmeter
 	
 	<a href="/Bteam/history_doc.jsp">貸出履歴</a>//historyテーブル
 	<input type="hidden" name="action" value="${cust.cID }">
 	
-	
+	getattribute
 	
 <a href ="/Bteam/documentSearch.jsp"><h2 align = "center">検索TOPへ</h2></a>
 

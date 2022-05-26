@@ -32,6 +32,7 @@ public class CustomersearchServlet extends HttpServlet {
          }else if (action.equals("renddoc")){
         	 int cID = Integer.parseInt(request.getParameter("cID"));
         	 
+        	 
          }
     }catch(DAOException e) {
 		e.printStackTrace();
