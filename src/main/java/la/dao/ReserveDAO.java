@@ -6,6 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import la.bean.ReserveBean;
 
 public class ReserveDAO {
 
@@ -21,6 +25,62 @@ public class ReserveDAO {
 			throw new DAOException("ドライバの登録に失敗しました");
 		}
 	}
+
+	public List<ReserveBean> name_serch(int user_id) throws DAOException {
+		String sql = "SELECT * FROM customer WEHRE customer_id = ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, user_id);
+
+			try (ResultSet rs = st.executeQuery();) {
+				List<ReserveBean> list = new ArrayList<ReserveBean>();
+				while (rs.next()) {
+					String cName = rs.getString("cName");
+					int cID = rs.getInt("cID");
+					ReserveBean bean = new ReserveBean(cName,cID);
+					list.add(bean);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("会員IDが間違っています。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDが間違っています。");
+		}
+	}
+	public List<ReserveBean> siryou_serch (int item_id) throws DAOException{
+		String sql ="SELECT * FROM customer WEHRE item_id = ?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+			st.setInt(1, item_id);
+
+			try (ResultSet rs = st.executeQuery();) {
+				List<ReserveBean> list = new ArrayList<ReserveBean>();
+				while (rs.next()) {
+					int dID =rs.getInt("dID");
+					int isbn =rs.getInt("isbn");
+					String dName= rs.getString("dName");
+					int cCode= rs.getInt("cCode");
+					String aName= rs.getString("aName");
+					String pName= rs.getString("pName");
+					String pDate= rs.getString("pDate");
+					ReserveBean bean = new ReserveBean(dID,isbn,dName,cCode,aName,pName,pDate);
+					list.add(bean);
+				}
+				return list;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		throw new DAOException("会員IDが間違っています。");
+	}
+} catch (SQLException e) {
+	e.printStackTrace();
+	throw new DAOException("会員IDが間違っています。");
+}
+}
+	
+	
 
 	public boolean Confirmation(int dID) throws DAOException {
 
