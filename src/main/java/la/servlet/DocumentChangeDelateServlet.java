@@ -27,7 +27,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
                 int list=dao.PreDelate(dID);
                 
 				if (list == 0) {
-					gotoPage(request, response, "documentError.jsp");
+					gotoPage(request, response, "/documentError.jsp");
 				} else {
 					int list1 = dao.Delate(dID);
 					request.setAttribute("items", list1);
@@ -37,7 +37,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 				int dID = Integer.parseInt(request.getParameter("key"));
 
 				if (dID == 0) {
-					gotoPage(request, response, "documentError.jsp");
+					gotoPage(request, response, "/documentError.jsp");
 				} else {
 					gotoPage(request, response, "");
 				}
