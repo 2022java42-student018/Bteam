@@ -14,8 +14,8 @@
 	<h1>貸出フォーム</h1> 
     <form action="/bteam/RentalServlet" method="post">
         <div class="box">
-            会員ID:<input type="text" name="cID"><br>
-           	資料ID:<input type="text" name="dID"><br>
+            会員ID:<input type="number" name="cID"><br>
+           	資料ID:<input type="number" name="dID"><br>
         	 <input type="submit" value="送信">
         	 <input type ="hidden" name="action" value = "ren" >
         </div>
@@ -28,8 +28,7 @@
             <input type ="hidden" name="ret">
         </div>
     </form>
-
-    <button type=“button” onclick="/bteam/TopHTML">Topへ</button>
+    <button onclick="location.href='TOP.jsp'">TOPへ</button>
  </div>
 </body>
 
