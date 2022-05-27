@@ -26,6 +26,9 @@ if (action.equals("regist")) {
          String name = request.getParameter("name");
          String address = request.getParameter("address");
          String tel = request.getParameter("tel");
+         String email = request.getParameter("email");
+         String bday = request.getParameter("bday");
+         
          HttpSession session = request.getSession();
  session.setAttribute("name", name);
  session.setAttribute("address", address);
@@ -42,6 +45,8 @@ HttpSession session = request.getSession(false);
 if (session == null) {
    out.println("<html><head><title>ShowCart</title></head><body>");
    out.println("<h1>入力内容に誤りがあります</h1>");
+  
+   
   return;
 }
 
@@ -51,6 +56,10 @@ if (session == null) {
         String name = (String)session.getAttribute("name");
         String address = (String)session.getAttribute("address");
         String tel = (String)session.getAttribute("tel");
+        String email = (String)session.getAttribute("email");
+        String bday = (String)session.getAttribute("bday");
+        
+        
 out.println("<html><head><title>ShowCustomer</title></head><body>");
 out.println("名前:" + name + "<br/>");
 out.println("住所:" + address + "<br/>");
