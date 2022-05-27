@@ -202,7 +202,7 @@ public class RentalDAO {
 
 	}
 	
-	public String rental(int cID,int dID) throws DAOException {
+	public void rental(int cID,int dID) throws DAOException {
 		// SQL文の作成
 		String sql = "UPDATE item SET renCID=? item WHERE dID =?";
 		
