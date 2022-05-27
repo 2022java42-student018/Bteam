@@ -96,7 +96,6 @@ public class RentalDAO {
 			st.setInt(1, cID);
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				rs.last();
 				Date retDate = rs.getDate("retDate");
 				Calendar retCalendar =  Calendar.getInstance();
 				Calendar today =  Calendar.getInstance();
@@ -109,7 +108,7 @@ public class RentalDAO {
 				
 				retCalendar.set(year,month,date,0,0,0);
 				
-				Check = retCalendar.after(today);
+				Check = retCalendar.before(today);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("会員IDエラー");
@@ -147,7 +146,10 @@ public class RentalDAO {
 	public Calendar getretlineDay(int dID) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT aDate FROM item WHERE dID =?";
+		Calendar today = Calendar.getInstance();
 		Calendar retlineDay = Calendar.getInstance();
+		Calendar aCalendar = Calendar.getInstance();
+		
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
 				// PreparedStatementオブジェクトの取得
@@ -157,7 +159,22 @@ public class RentalDAO {
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
 				Date aDate = rs.getDate("aDate");
-				Calendar aCalendar = Calendar.setTime(aDate);
+				aCalendar.setTime(aDate);
+				
+				int year = today.YEAR;
+				int month = today.MONTH;
+				int date = today.DATE;
+				
+				int a_year = aCalendar.YEAR;
+				int a_month = aCalendar.MONTH+3;
+				int a_date = aCalendar.DATE;
+				
+				today.set(year,month,date,0,0,0);
+				aCalendar.set(a_year,a_month,a_date,0,0,0);
+				
+				if(aCalendar.before(today)) {
+					
+				}
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
