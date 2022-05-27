@@ -21,16 +21,29 @@
 				<td>出版社</td>
 				<td>出版日</td>
 			</tr>
-
+<c:forEach document="${r}" var="doc">
 			<tr>
-				<td>${dID}</td>
-				<td>${isbn}</td>
-				<td>${dName}</td>
-				<td>${cCode}</td>
-				<td>${aName}</td>
-				<td>${pName}</td>
-				<td>${aDate}</td>
+				<td>${doc.dID}</td>
+				<td>${doc.isbn}</td>
+				<td>${doc.dName}</td>
+				<td>${doc.cCode}</td>
+				<td>${doc.aName}</td>
+				<td>${doc.pName}</td>
+				<td>${doc.aDate}</td>
 			</tr>
+</c:forEach>
+
+<c:forEach document="${a}" var="doc">
+             <tr>
+				<td>${doc.dID}</td>
+				<td>${doc.isbn}</td>
+				<td>${doc.dName}</td>
+				<td>${doc.cCode}</td>
+				<td>${doc.aName}</td>
+				<td>${doc.pName}</td>
+				<td>${doc.aDate}</td>
+			</tr>
+</c:forEach>
 		</table>
 		<form action="/Bteam/ReserveServlet" method="post">
 		<input type="hidden" name="action" value="reserve" >

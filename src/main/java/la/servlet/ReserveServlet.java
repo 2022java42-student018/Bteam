@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import la.bean.ReserveBean;
 import la.dao.DAOException;
@@ -19,41 +20,35 @@ public class ReserveServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		try {
-			request.setCharacterEncoding("UTF-8");
 			String action = request.getParameter("action");
 			ReserveDAO dao = new ReserveDAO();
+			HttpSession session = request.getSession(false);
+			if (session == null) {
+				request.getAttribute("message");
+				gotoPage(request, response, "/ReserveCheck.jsp");
+				return;
+			}
 
 			if (action.equals("Confirmation")) {
-				int userID = Integer.parseInt(request.getParameter("ID"));
-				List<ReserveBean> list = dao.name_serch(userID);
-				request.setAttribute("r_data", list);
+				int cID = Integer.parseInt(request.getParameter("cID"));
+				List<ReserveBean> list = dao.name_serch(cID);
+				request.setAttribute("r", list);
+
+				session.getAttribute("ManagementdID");
+				List<ReserveBean> list2 = dao.Document_serch("ManagementdID");
+				request.setAttribute("a", list2);
+
 				gotoPage(request, response, "/ReserveCheck.jsp");
+
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "既に予約されています");
 			gotoPage(request, response, "/errorTOP.jsp");
 		}
-		
-		
 	}
-	
-	
-	
-	
-
-	/*
-	 * int dID = (Integer) session.getAttribute("ManagementdID"); if
-	 * (dao.Confirmation(dID)) { gotoPage(request, response, "/resevehtml"); } else
-	 * { request.setAttribute("message", "既に予約されています"); gotoPage(request, response,
-	 * "/errorTOP.jsp"); } } else if (action.equals("ManagementdID")) {
-	 * 
-	 * } }catch(
-	 * 
-	 * DAOException e) { e.printStackTrace(); request.setAttribute("message",
-	 * "既に予約されています"); gotoPage(request, response, "/errorTOP.jsp"); } }
-	 */
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(page);

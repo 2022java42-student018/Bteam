@@ -50,11 +50,11 @@ public class ReserveDAO {
 			throw new DAOException("会員IDが間違っています。");
 		}
 	}
-	public List<ReserveBean> siryou_serch (int item_id) throws DAOException{
+	public List<ReserveBean> Document_serch (String item_id) throws DAOException{
 		String sql ="SELECT * FROM customer WEHRE item_id = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setInt(1, item_id);
+			st.setString(1, item_id);
 
 			try (ResultSet rs = st.executeQuery();) {
 				List<ReserveBean> list = new ArrayList<ReserveBean>();
