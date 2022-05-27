@@ -10,7 +10,7 @@
 	<div style = "text-align: center">
 		<h1>${message}</h1>
 		<button onclick="location.href='TOP.jsp'">TOPへ</button>
-		<button onclick="location.href='TOP.jsp'">貸出・返却フォームへ</button>
+		<button onclick="location.href='rentalform.html'">貸出・返却フォームへ</button>
 	</div>	
 </body>
 </html>

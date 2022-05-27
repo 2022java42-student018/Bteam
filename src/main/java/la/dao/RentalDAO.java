@@ -75,9 +75,11 @@ public class RentalDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new DAOException("会員IDエラー");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DAOException("会員IDエラー");
 		}
 	return Check;
 	}
@@ -107,6 +109,31 @@ public class RentalDAO {
 				
 				retCalendar.set(year,month,date,0,0,0);
 				
+				Check = retCalendar.after(today);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("会員IDエラー");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDエラー");
+		}
+	return Check;
+	}
+	
+	public String getcName(int cID) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT cName FROM customer WHERE cID =?";
+		String cName = null;
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダ
+			st.setInt(1, cID);
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				cName = rs.getString(cName);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -114,6 +141,29 @@ public class RentalDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	return Check;
+	return cName;
+	}
+	
+	public String getdName(int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT dName FROM item WHERE dID =?";
+		String dName = null;
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダ
+			st.setInt(1, dID);
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				dName = rs.getString(dName);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return dName;
 	}
 }
