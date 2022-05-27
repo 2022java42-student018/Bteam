@@ -35,12 +35,14 @@ public class ReserveServlet extends HttpServlet {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				List<ReserveBean> list = dao.name_serch(cID);
 				request.setAttribute("r", list);
+				
 
 				session.getAttribute("ManagementdID");
 				List<ReserveBean> list2 = dao.Document_serch("ManagementdID");
 				request.setAttribute("a", list2);
 
-				gotoPage(request, response, "/ReserveCheck.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/ReserveCheck.jsp");
+				rd.forward(request, response);
 
 			}
 		} catch (DAOException e) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,33 +22,33 @@
 				<td>出版社</td>
 				<td>出版日</td>
 			</tr>
-<c:forEach document="${r}" var="doc">
-			<tr>
-				<td>${doc.dID}</td>
-				<td>${doc.isbn}</td>
-				<td>${doc.dName}</td>
-				<td>${doc.cCode}</td>
-				<td>${doc.aName}</td>
-				<td>${doc.pName}</td>
-				<td>${doc.aDate}</td>
-			</tr>
-</c:forEach>
+			<c:forEach r="${r}" var="doc">
+				<tr>
+					<td>${doc.dID}</td>
+					<td>${doc.isbn}</td>
+					<td>${doc.dName}</td>
+					<td>${doc.cCode}</td>
+					<td>${doc.aName}</td>
+					<td>${doc.pName}</td>
+					<td>${doc.aDate}</td>
+				</tr>
+			</c:forEach>
 
-<c:forEach document="${a}" var="doc">
-             <tr>
-				<td>${doc.dID}</td>
-				<td>${doc.isbn}</td>
-				<td>${doc.dName}</td>
-				<td>${doc.cCode}</td>
-				<td>${doc.aName}</td>
-				<td>${doc.pName}</td>
-				<td>${doc.aDate}</td>
-			</tr>
-</c:forEach>
+			<c:forEach document2="${a}" var="doc">
+				<tr>
+					<td>${doc.dID}</td>
+					<td>${doc.isbn}</td>
+					<td>${doc.dName}</td>
+					<td>${doc.cCode}</td>
+					<td>${doc.aName}</td>
+					<td>${doc.pName}</td>
+					<td>${doc.aDate}</td>
+				</tr>
+			</c:forEach>
 		</table>
 		<form action="/Bteam/ReserveServlet" method="post">
-		<input type="hidden" name="action" value="reserve" >
-		<input type="submit" value="予約">
+			<input type="hidden" name="action" value="reserve"> <input
+				type="submit" value="予約">
 		</form>
 	</div>
 </body>
