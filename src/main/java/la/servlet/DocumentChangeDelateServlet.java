@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import la.bean.DocumentInfoBean;
-import la.dao.ChangeDelateDAO;
 import la.dao.DAOException;
+import la.dao.DocumentChangeDelateDAO;
 
 @WebServlet("/DocumentChangeDelateServlet")
 public class DocumentChangeDelateServlet extends HttpServlet {
@@ -23,7 +23,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String action = request.getParameter("action");
-			ChangeDelateDAO dao = new ChangeDelateDAO();
+			DocumentChangeDelateDAO dao = new DocumentChangeDelateDAO();
 			HttpSession session = request.getSession(false);
 			
             
@@ -34,7 +34,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
                 
 				if (list == 0) {
 					request.setAttribute("message", "選択したデータは既に削除されています");
-					gotoPage(request, response, "/documentError.jsp");
+					gotoPage(request, response, "/documentSearchError.jsp");
 				} else {
 					int list1 = dao.Delate(dID);
 					request.setAttribute("items", list1);
@@ -48,7 +48,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 
 				if (dID == 0) {
 					request.setAttribute("message", "選択したデータは既に削除されています");
-					gotoPage(request, response, "/documentError.jsp");
+					gotoPage(request, response, "/documentSearchError.jsp");
 				} else {
 					gotoPage(request, response, "/documentPredelate.jsp");
 				}
@@ -58,7 +58,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 				int dID = (Integer)session.getAttribute("ManagementdID");
 				if (dID == 0) {
 					request.setAttribute("message", "選択したデータは既に削除されています");
-					gotoPage(request, response, "/documentError.jsp");
+					gotoPage(request, response, "/documentSearchError.jsp");
 				} else {
 				int isbn =Integer.parseInt(request.getParameter("isbn"));
 				int cCode = Integer.parseInt(request.getParameter("cCode"));
@@ -77,14 +77,14 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 				
 			} else {
 				request.setAttribute("message", "正しく操作してください");
-				gotoPage(request, response, "/documentError.jsp");
+				gotoPage(request, response, "/documentSearchError.jsp");
 			}
 			
 			
 		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "正しく操作してください");
-			gotoPage(request, response, "/documentError.jsp");
+			gotoPage(request, response, "/documentSearchError.jsp");
 		}
 	}
 

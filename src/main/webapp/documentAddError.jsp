@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>エラー</title>
+<title>Error Page</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <h1 align = "center">${message}</h1>
 <br><br>
 
-<a href ="/Bteam/documentSearch.jsp"><h3 align = "center">検索TOPへ</h3></a>
+<a href ="/Bteam/documentAddForm.jsp"><h3 align = "center">登録TOPへ</h3></a>
 
 </body>
 </html>
