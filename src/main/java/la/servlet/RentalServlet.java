@@ -38,6 +38,8 @@ public class RentalServlet extends HttpServlet {
 					gotoPage(request,response,"/errorRental.jsp");
 				}else {
 					request.setAttribute("dName",dao.getdName(dID));
+					request.setAttribute("retlineDay", dao.getretlineDay(dID));
+					
 					gotoPage(request,response,"/RentalConfirmation.jsp");
 				}
 			}

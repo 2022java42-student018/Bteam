@@ -164,7 +164,7 @@ public class RentalDAO {
 			st.setInt(1, dID);
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-
+				
 				Calendar today = Calendar.getInstance();
 				Calendar retlineDay = Calendar.getInstance();
 				Calendar aCalendar = Calendar.getInstance();
@@ -200,5 +200,30 @@ public class RentalDAO {
 			throw new DAOException("資料IDエラー");
 		}
 
+	}
+	
+	public String rental(int cID,int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "UPDATE item SET renCID=? item WHERE dID =?";
+		
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダ
+			st.setInt(1, cID);
+			st.setInt(2, dID);
+
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("資料IDエラー");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("資料IDエラー");
+		}
 	}
 }
