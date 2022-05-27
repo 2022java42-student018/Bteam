@@ -41,12 +41,12 @@ public void setCId(int cID) {
 	this.cID = cID;
 }
 
-public String getName() {
-	return name;
+public String getCname() {
+	return cName;
 }
 
-public void setName(String name) {
-	this.name = name;
+public void setCname(String cName) {
+	this.cName = cName;
 }
 
 public String getDname() {
@@ -56,5 +56,32 @@ public String getDname() {
 public void getDname(String dName) {
 	this.dName = dName;
 }
+public int getCcode() {
+	return cCode;
+}
 
+public void setCcode(int cCode) {
+	this.cCode = cCode;
+}
+public String getAname() {
+	return aName;
+}
+
+public void setAname(String aName ) {
+	this.aName = aName;
+}
+public String getPname() {
+	return pName;
+}
+
+public void setPname(String pName) {
+	this.pName =pName ;
+}
+public int getPdate() {
+	return pDate;
+}
+
+public void setPdate(int pDate) {
+	this. pDate=pDate ;
+}
 }
