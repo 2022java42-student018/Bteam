@@ -11,8 +11,7 @@
 
 <h1>${message}</h1>
 
-<button type="button"
-onclick = "">
-</button>
+<button onclick="location.href='Customeradd.html'">登録画面へ</button>
+
 </body>
 </html>
