@@ -66,7 +66,7 @@ public class ReserveDAO {
 					String aName= rs.getString("aName");
 					String pName= rs.getString("pName");
 					String pDate= rs.getString("pDate");
-					ReserveBean bean = new ReserveBean(dID,isbn,dName,cCode,aName,pName,pDate);
+					ReserveBean bean = new ReserveBean(pDate,isbn,dName,cCode,aName,pName,dID);
 					list.add(bean);
 				}
 				return list;

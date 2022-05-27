@@ -35,7 +35,11 @@ public class ReserveServlet extends HttpServlet {
 			request.setAttribute("message", "既に予約されています");
 			gotoPage(request, response, "/errorTOP.jsp");
 		}
+		
+		
 	}
+	
+	
 	
 	
 
