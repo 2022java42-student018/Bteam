@@ -31,14 +31,21 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("message", "すでに資料が貸出または予約されています");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else if(dao.fivebooks(cID)) {
-					request.setAttribute("message", "既に5冊の資料を貸出しています。先に返却してください");
+					request.setAttribute("message", "既に5冊の資料を貸出しています\r\n"+ "先に返却してください");
 					gotoPage(request,response,"/errorRental.jsp");
+				}else if(dao.overrent(cID)) {
+					request.setAttribute("message", "資料の返却期限が過ぎています\r\n"+ "資料返却を行ってください");
+					gotoPage(request,response,"/errorRental.jsp");
+				}else {
+					request.setAttribute("cName",dao.getcName(cID));
+					request.setAttribute("dName",dao.getcName(dID));
+					gotoPage(request,response,"/RentalConfirmation.jsp");
 				}
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "内部エラーが発生しました");
-			
+			gotoPage(request,response,"/errorRental.jsp");
 		}
 	}
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)

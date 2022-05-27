@@ -20,11 +20,17 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/Bteam/lend_doc.jsp">貸出中資料</a>
-	<input type="hidden" name="action" value="${cust.cID }">
+	<!-- <a href="/Bteam/lend_doc.jsp">貸出中資料</a>
+	<input type="hidden" name="action" value="${cust.cID }"> -->
 	getparrmeter
 	
-	<a href="/Bteam/history_doc.jsp">貸出履歴</a>//historyテーブル
+	<form action="./CustomersearchServlet?" method="get">
+				<a href="/CustomersearchServlet?action=lend_doc">貸出中資料</a>
+				<!-- <input type="submit" value="rendoc"> -->
+				<input type="hidden" name="action" value="${cust.cID }">
+			</form>
+	
+	<a href="/Bteam/history_doc.jsp">貸出履歴</a> //historyテーブル
 	<input type="hidden" name="action" value="${cust.cID }">
 	
 	getattribute
