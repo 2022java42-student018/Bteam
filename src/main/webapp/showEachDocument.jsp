@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showEachDocument</title>
+<title>Show Each Document Page</title>
 <style type = "text/css">
 box  { display:inline; 
        align:center; }
@@ -23,50 +23,53 @@ box  { display:inline;
 
 
 <table border = "1" align = "center" >
-<tr><th>資料ID</th><td>${items.dID }</td></tr>
 
-<tr><th>ISBN番号</th><td>${items.isbn }</td></tr>
+<tr><th>資料ID</th><td>${targetbook.dID }</td></tr>
 
-<tr><th>分野コード</th><td>${items.cCode }</td></tr>
+<tr><th>ISBN番号</th><td>${targetbook.isbn }</td></tr>
 
-<tr><th>資料名</th><td>${items.dName }</td></tr>
+<tr><th>分野コード</th><td>${targetbook.cCode }</td></tr>
 
-<tr><th>著者名</th><td>${items.aName }</td></tr>
+<tr><th>資料名</th><td>${targetbook.dName }</td></tr>
 
-<tr><th>出版社名</th><td>${items.pName }</td></tr>
+<tr><th>著者名</th><td>${targetbook.aName }</td></tr>
 
-<tr><th>出版日</th><td>${items.pDate }</td></tr>
+<tr><th>出版社名</th><td>${targetbook.pName }</td></tr>
 
-<tr><th>入荷年月日</th><td>${items.aDate }</td></tr>
+<tr><th>出版日</th><td>${targetbook.pDate }</td></tr>
 
-<tr><th>貸出状況</th><td>${items.renCID }</td></tr>
+<tr><th>入荷年月日</th><td>${targetbook.aDate }</td></tr>
 
-<tr><th>予約状況</th><td>${items.resCID }</td></tr>
+<tr><th>貸出状況</th><td>${targetbook.renCID }</td></tr>
+
+<tr><th>予約状況</th><td>${targetbook.resCID }</td></tr>
 
 </table>
+<br>
+<br>
 
 <div align = "center">
 <table border="0">
 <tr>
 <td>
-<form action="/Bteam/ReserveServlet">
+<form action="/Bteam/ReserveServlet" method ="post">
 <input type = "submit" value="予約">
-<input type = "hidden" name = "dID" value = "${item.dID}">
 <input type ="hidden" name = "action" value ="reserve">
 </form>
 </td>
 
 
 <td>
-<form action="">
+<form action="/Bteam/documentChangeForm.jsp">
 <input type = "submit" value = "変更">
 <input type = "hidden" name = "action" value = "change">
+
 </form>
 </td>
 
 
 <td>
-<form action ="">
+<form action ="/Bteam/DocumentChangeDelateServlet" method = "post">
 <input type = "submit" value = "削除">
 <input type = "hidden" name="action" value = "preDelate">
 </form>

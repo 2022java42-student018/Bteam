@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showAllDocument</title>
+<title>Show All Document Page</title>
 
 </head>
 <body>
@@ -40,6 +40,7 @@
 </td><td>${item.dName }</td><td>${item.aName }</td><td>${item.pName }</td><td>${item.renCID }</td>
 </tr>
 </c:forEach>
+
 </table>
 <br>
 

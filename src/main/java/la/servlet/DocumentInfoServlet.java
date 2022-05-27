@@ -28,16 +28,17 @@ public class DocumentInfoServlet extends HttpServlet {
 				int dID = Integer.parseInt(request.getParameter("key"));
 				session.setAttribute("ManagementdID", dID);
 				DocumentInfoBean list = dao.ShowAllInfo(dID);
-				session.setAttribute("items", list);
+				session.setAttribute("targetbook", list);
 				gotoPage(request,response, "/showEachDocument.jsp");
-			}else {
-				request.setAttribute("message", "正しく操作してください");
-				gotoPage(request,response,"/documentError.jsp");
+				return;
+			}else { 
+				request.setAttribute("message", "URLに不備が見つかりました");
+				gotoPage(request,response,"/documentSearchError.jsp");
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "入力した内容に不備があります3");
-			gotoPage(request,response,"/documentError.jsp");
+			request.setAttribute("message", "正しく操作してください");
+			gotoPage(request,response,"/documentSearchError.jsp");
 		}
 	}
 	

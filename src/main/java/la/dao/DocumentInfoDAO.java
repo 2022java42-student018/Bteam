@@ -16,6 +16,7 @@ public class DocumentInfoDAO {
 	String pass = "himitu";
     
 	public DocumentInfoDAO() throws DAOException {
+	
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
@@ -53,6 +54,7 @@ public class DocumentInfoDAO {
 						resCID="予約中";
 					}
 					 bean = new DocumentInfoBean(dID, isbn, cCode, dName, aName, pName, pDate, aDate, renCID, resCID);
+					 
 					
 				}
 				return bean;

@@ -7,12 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ChangeDelateDAO {
+public class DocumentChangeDelateDAO {
 	String url = "jdbc:postgresql:sample";
 	String user = "student";
 	String pass = "himitu";
     
-	public ChangeDelateDAO()throws DAOException{
+	public DocumentChangeDelateDAO()throws DAOException{
 		try {
 			Class.forName("org.postgresql.Driver");
 			} catch (ClassNotFoundException e) {
