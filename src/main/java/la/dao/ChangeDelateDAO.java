@@ -1,6 +1,7 @@
 package la.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,6 +59,27 @@ public class ChangeDelateDAO {
 				
 			
 		}
+	
+	public int Change( int ledID,int leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)throws DAOException {
+		String spl ="UPDATE bitem SET isbn = ?, cCode = ? , dName = ? , aName = ? , pName = ? , pDate = ? WHERE dID = ? ";
+		try(Connection con = DriverManager.getConnection(url, user, pass);
+			PreparedStatement st = con.prepareStatement(spl);){
+			st.setInt(1, leisbn);
+			st.setInt(2, lecCode);
+			st.setString(3, ledName);
+			st.setString(4, leaName);
+			st.setString(5, lepName);
+			st.setDate(6, lepDate);
+			st.setInt(7,ledID);
+			int rows =st.executeUpdate();
+			return rows;
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("正しく操作してください");
+		}
 	}
+		
+	}
+	
 
 

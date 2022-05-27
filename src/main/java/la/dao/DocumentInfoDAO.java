@@ -16,6 +16,7 @@ public class DocumentInfoDAO {
 	String pass = "himitu";
     
 	public DocumentInfoDAO() throws DAOException {
+	
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
