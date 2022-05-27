@@ -10,9 +10,10 @@ import java.util.List;
 
 import la.bean.CustomerBean;
 import la.bean.DocumentInfoBean;
+import la.bean.historyBean;
 
 public class CustomerDAO {
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:bteam2";
 	String user = "student";
 	String pass = "himitu";
 
@@ -27,7 +28,7 @@ public class CustomerDAO {
 
 	
 	public List <CustomerBean> emailSearch(String eMail )throws DAOException{
-		String sql = "SELECT cID,cName,cAddress,cTell,cMail,cBday,cJdate,cWdate FROM customer WHERE cMail =?";
+		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
 		
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -40,13 +41,12 @@ public class CustomerDAO {
 				while (rs.next()) {
 					int cID =rs.getInt("cID");
 					String cName =rs.getString("cName");
-					int cAddress =rs.getInt("cAddress");
+					String cAddress =rs.getString("cAddress");
 					int cTell =rs.getInt("cTell");
-					String cMail =rs.getString("cMail");
-					int cBday =rs.getInt("cBday");
-					int cJdate =rs.getInt("cJdate");
-					int cWdate =rs.getInt("cWdate");
-					CustomerBean bean = new CustomerBean(cID, cName, cAddress, cJdate, cMail, cBday, cJdate, cWdate);
+					String cMail = rs.getString("cMail");
+					java.sql.Date cBday =rs.getDate("cBday");
+					java.sql.Date cJdate =rs.getDate("cJdate");
+					CustomerBean bean = new CustomerBean(cID,cName,cAddress,cTell,cMail,cBday,cJdate);
 					list.add(bean);
 				}
 				return list;
@@ -90,18 +90,40 @@ public class CustomerDAO {
 			e.printStackTrace();
 			throw new DAOException("入力した内容に不備があります");
 		}
+	
 	}
-	public List<DocumentInfoBean> history() throws DAOException {
-		String sql = "SELECT dID,renDate,retDate,FROM history INNER JOIN item カラム名 = テーブル1.カラム名WHERE renCID =?";
-		
-		String sql = "SELECT dID,dName,pName,aName,renCID,resCID FROM item INNER JOIN history ON history."
+	public List<historyBean> history(int cID) throws DAOException {
+		String sql = "SELECT cID,dName,renDate,retDate,FROM history WHERE cID =?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 	
 			st.setInt(1, cID);
+			
+			try (
+					ResultSet rs = st.executeQuery();) {
+				List<historyBean> list = new ArrayList<historyBean>();
+				while (rs.next()) {
+					int cID1 = rs.getInt("cID");
+					String dName = rs.getString("dName");// タイトル
+					int renCID = rs.getInt("renCID ");
+					int retCID = rs.getInt("retCID ");
+					historyBean bean = new historyBean(cID1,dName ,renCID,retCID);
+					list.add(bean);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("入力した内容に不備があります");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります");
+		}
+	
+	
 	
 	}
-
+	
 
 	
 	

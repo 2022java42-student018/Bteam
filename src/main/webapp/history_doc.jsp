@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>貸出中の資料一覧</h1>
+<h1>貸出履歴</h1>
 <table border="1">
 		<tr>
-			<th>資料ID</th><th>タイトル</th><th>出版社</th><th>著者</th><th>貸出日</th><th>返却日</th>
+			<th>会員ID</th><th>タイトル</th><th>貸出日</th><th>返却日</th>
 		</tr>
-		<c:forEach items="${item}" var="item">
+		<c:forEach items="${history}" var="item">
 			<tr>
-				<td>${item.dID }</td><td>${item.cName }</td><td>${item.cMail }</td><td>${item.cBday }</td><td>${item.cJdate}</td>
+				<td>${item.cID }</td><td>${item.dName }</td><td>${item.renDate }</td><td>${item.retDate }</td><td>${item.cJdate}</td>
 			</tr>
 		</c:forEach>
 	</table>
