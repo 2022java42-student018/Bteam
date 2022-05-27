@@ -30,13 +30,14 @@ public class DocumentInfoServlet extends HttpServlet {
 				DocumentInfoBean list = dao.ShowAllInfo(dID);
 				session.setAttribute("items", list);
 				gotoPage(request,response, "/showEachDocument.jsp");
+				return;
 			}else {
-				request.setAttribute("message", "正しく操作してください");
+				request.setAttribute("message", "URLに不備が見つかりました");
 				gotoPage(request,response,"/documentError.jsp");
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "入力した内容に不備があります3");
+			request.setAttribute("message", "正しく操作してください");
 			gotoPage(request,response,"/documentError.jsp");
 		}
 	}

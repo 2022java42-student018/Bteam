@@ -30,6 +30,16 @@ public class DocumentInfoBean implements Serializable {
 		this.resCID=resCID;
 	}
 	
+	public DocumentInfoBean(int dID, int isbn, int cCode, String dName, String aName, String pName, Date pDate) {
+		this.dID=dID;
+		this.isbn=isbn;
+		this.cCode=cCode;
+		this.dName=dName;
+		this.aName=aName;
+		this.pName=pName;
+		this.pDate=pDate;
+	}
+	
 	public DocumentInfoBean() {
 		
 	}
