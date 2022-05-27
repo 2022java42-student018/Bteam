@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DocumentSerchStartPage</title>
+<title>Document Search Page</title>
 </head>
 <body>
 
@@ -37,7 +37,12 @@
  </h2>
  </form>
 
+<div align = "center">
 
+<form action ="/Bteam/TOP.jsp" method ="post">
+<input type ="submit" value ="TOPへ">
+</form>
 
+</div>
 </body>
 </html>

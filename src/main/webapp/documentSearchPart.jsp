@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form action ="/Bteam/DocumentServlet" method ="post" align ="center">
+<form action ="/prototype_TeamB/DocumentServlet" method ="post" align ="center">
  資料ID:
 <input type ="text" name="dID" size="20">
 <input type ="submit" value="検索">
