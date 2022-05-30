@@ -10,11 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import la.bean.CustomerBean;
 import la.bean.historyBean;
-import la.dao.CustomerDAO;
+import la.dao.CustomersearchDAO;
 import la.dao.DAOException;
 
 @WebServlet("/CustomersearchServlet")
@@ -26,13 +25,10 @@ public class CustomersearchServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String action = request.getParameter("action");
-			CustomerDAO dao = new CustomerDAO();
-
-			HttpSession session = request.getSession();
+			CustomersearchDAO dao = new CustomersearchDAO();
 
 			if (action.equals("eMailSearch")) {
 				String eMail = request.getParameter("email");
-				session.setAttribute("email", eMail);
 				
 				if (eMail == "") {
 					request.setAttribute("message", "Emailが未入力です");

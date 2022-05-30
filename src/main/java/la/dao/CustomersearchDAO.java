@@ -9,17 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import la.bean.CustomerBean;
-//import la.bean.CustomerBean;
-import la.bean.CustomerBean1;
 import la.bean.historyBean;
 import la.bean.lend_docBean;
 
-public class CustomerDAO {
+public class CustomersearchDAO {
 	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
 
-	public CustomerDAO() throws DAOException {
+	public CustomersearchDAO() throws DAOException {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
@@ -62,7 +60,7 @@ public class CustomerDAO {
 		}
 	}
 
-	public List<CustomerBean1> emailSearch(String eMail) throws DAOException {
+	public List<CustomerBean> emailSearch(String eMail) throws DAOException {
 		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -71,7 +69,7 @@ public class CustomerDAO {
 			st.setString(1, eMail);
 
 			try (ResultSet rs = st.executeQuery();) {
-				List<CustomerBean1> list = new ArrayList<CustomerBean1>();
+				List<CustomerBean> list = new ArrayList<CustomerBean>();
 				while (rs.next()) {
 					int cID = rs.getInt("cID");
 					String cName = rs.getString("cName");
@@ -80,7 +78,7 @@ public class CustomerDAO {
 					String cMail = rs.getString("cMail");
 					java.sql.Date cBday = rs.getDate("cBday");
 					java.sql.Date cJdate = rs.getDate("cJdate");
-					CustomerBean1 bean = new CustomerBean1(cID, cName, cAddress, cTell, cMail, cBday, cJdate);
+					CustomerBean bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate);
 					list.add(bean);
 				}
 				return list;
@@ -156,13 +154,3 @@ public class CustomerDAO {
 	}
 
 }
-
-//		
-
-//		}catch(DAOException e) {
-//			e.printStackTrace();
-//			request.setAttribute("message", "入力した内容に不備があります");
-//			gotoPage(request,response,"/custmer_error.jsp");
-//		}
-//	}
-//}
