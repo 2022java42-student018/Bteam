@@ -23,11 +23,7 @@ public class ReserveServlet extends HttpServlet {
 			String action = request.getParameter("action");
 			ReserveDAO dao = new ReserveDAO();
 			HttpSession session = request.getSession(false);
-			if (session == null) {
-				request.getAttribute("message");
-				gotoPage(request, response, "/ReserveCheck.jsp");
-				return;
-			} else if (action.equals("reserve")) {
+			if (action.equals("reserve")) {
 				int dID = (int) session.getAttribute("ManagementdID");
 				if (dao.reservestart(dID)) {
 					request.setAttribute("message", "すでに予約されている資料です");
@@ -41,6 +37,9 @@ public class ReserveServlet extends HttpServlet {
 				request.setAttribute("cName", dao.getcName(cID));
 				request.setAttribute("document", dao.Document_serch(dID));
 				gotoPage(request, response, "/ReserveCheck.jsp");
+			}else if(action.equals("decision")) {
+				int cID = Integer.parseInt(request.getParameter("cID"));
+				int dID = (int) session.getAttribute("ManagementdID");
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();

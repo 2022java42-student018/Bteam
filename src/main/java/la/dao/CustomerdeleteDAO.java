@@ -26,7 +26,7 @@ public class CustomerdeleteDAO {
 			throw new DAOException("ドライバの登録に失敗しました。");
 		}
 	}
-	
+
 	public boolean cWdateCheck(int cID) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT cWdate FROM customer WHERE cID= ?";
@@ -55,51 +55,51 @@ public class CustomerdeleteDAO {
 			throw new DAOException("会員IDまたは資料IDを" + "/r" + "正しく入力してください");
 		}
 	}
-	
-	public List<CustomerBean> getcustomer(int cID)throws DAOException{
+
+	public List<CustomerBean> getcustomer(int cID) throws DAOException {
 		String sql = "SELECT * FROM customer WHERE cID = ?";
-		try(
-		   Connection con = DriverManager.getConnection(url, user,pass);
-			PreparedStatement st = con.prepareStatement(sql);){
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, cID);
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
 				List<CustomerBean> list = new ArrayList<CustomerBean>();
-				String cName = rs.getString("cName");
-				String cAddress = rs.getString("cAddress");
-				String cTell = rs.getString("cTell");
-				String cMail = rs.getString("cMail");
-				Date cBday = rs.getDate("cBday");
-				Date cJdate = rs.getDate("cJdate");
-				CustomerBean bean = new CustomerBean(cID,cName,cAddress,cTell,cMail,cBday,cJdate,null);
-				list.add(bean);
+				while (rs.next()) {
+					String cName = rs.getString("cName");
+					String cAddress = rs.getString("cAddress");
+					String cTell = rs.getString("cTell");
+					String cMail = rs.getString("cMail");
+					Date cBday = rs.getDate("cBday");
+					Date cJdate = rs.getDate("cJdate");
+					CustomerBean bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate, null);
+					list.add(bean);
+				}
 				return list;
-			}catch(SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("正しく操作してください");
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("正しく操作してください");
 		}
 	}
-	
-	public int Delete(int cID)throws DAOException{
+
+	public int Delete(int cID) throws DAOException {
 		String sql = "UPDATE customer SET cWdate=? WHERE cID =?";
 		Date Date = new Date();
 		long timeInMilliSeconds = Date.getTime();
 		java.sql.Date today = new java.sql.Date(timeInMilliSeconds);
-		
-		try(
-		   Connection con = DriverManager.getConnection(url, user,pass);
-			PreparedStatement st = con.prepareStatement(sql);){
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setDate(1, today);
 			st.setInt(2, cID);
-			int rows =st.executeUpdate();
+			int rows = st.executeUpdate();
 			return rows;
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("正しく操作してください");
 		}
