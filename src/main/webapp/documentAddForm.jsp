@@ -66,7 +66,7 @@ lebel{
 <lebel>
    出版日:
 </lebel>
-<input type ="text" name ="pDate"  size="20" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください" required>
+<input type ="text" name ="pDate"  size="20" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください(例：1999-01-11)" required>
 
 
 </p>

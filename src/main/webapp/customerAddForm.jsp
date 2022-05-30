@@ -24,7 +24,7 @@ lebel{
 <h2 style = "text-align : center">お客様情報登録フォーム</h2>
 <div style = "text-align : center">
 
-<form action = "Bteam/CustomerAddServlet" method = "post">
+<form action = "/Bteam/CustomerAddServlet" method = "post">
 
 <p>
 <lebel>
@@ -44,21 +44,21 @@ lebel{
 <lebel>
 電話番号:
 </lebel>
-<input type = "text" name = "cTell" size ="40" pattern = "^[0-9a-zA-Z]+$" title="英数字で入力してください" required>
+<input type = "text" name = "cTell" size ="40" pattern = "\d{2,4}-\d{2,4}-\d{3,4}" title="形式を正して数字で入力してください(例：010-1111-1221)" required>
 </p>
 
 <p>
 <lebel>
 Eメール:
 </lebel>
-<input type = "email" name="cMail" size ="40" pattern= "^[0-9a-zA-Z]+$" title="英数字で入力してください" required>
+<input type = "email" name="cMail" size ="40" pattern= "^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$" title="英数字で入力してください" required>
 </p>
 
 <p>
 <lebel>
 生年月日:
 </lebel>
-<input type = "text" name ="cBday"  size="40" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください" required>
+<input type = "text" name ="cBday"  size="40" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください(例：1999-01-11)" required>
 </p>
 
 <br>
@@ -69,7 +69,7 @@ Eメール:
 <br>
 
 <div align ="center">
-<form action ="Bteam/TOP.jsp" method = "post">
+<form action ="/Bteam/TOP.jsp" method = "post">
 <input type ="submit" value ="TOPへ">
 </form>
 </div>
