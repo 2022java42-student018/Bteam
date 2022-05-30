@@ -1,7 +1,6 @@
 package la.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import la.bean.ReserveBean;
 import la.dao.DAOException;
 import la.dao.ReserveDAO;
 
@@ -25,26 +23,28 @@ public class ReserveServlet extends HttpServlet {
 			String action = request.getParameter("action");
 			ReserveDAO dao = new ReserveDAO();
 			HttpSession session = request.getSession(false);
-/*			if (session == null) {
+			if (session == null) {
 				request.getAttribute("message");
 				gotoPage(request, response, "/ReserveCheck.jsp");
 				return;
-			}*/
+			}
 			if(action.equals("reserve")) {
-				String sessiondID = (String)session.getAttribute("ManagementdID");
-				int dID = Integer.parseInt(sessiondID);
+				int dID = (int)session.getAttribute("ManagementdID");
 				if(dao.reservestart(dID)) {
 					request.setAttribute("message", "すでに予約されている資料です");
 					gotoPage(request,response,"/errorTOP.jsp");
 				}else {
-					gotoPage(request,response,"/resserv.html");
+					gotoPage(request,response,"/reserve.html");
 				}
 			}
 
 			if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
-				List<ReserveBean> list = dao.name_serch(cID);
-				request.setAttribute("A", list);
+				int dID = (int)session.getAttribute("ManagementdID");
+				request.setAttribute("cName",cID);
+				request.setAttribute("document", dao.Document_serch(dID));
+				gotoPage(request,response,"/ReserveCheck.html");
+				
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
