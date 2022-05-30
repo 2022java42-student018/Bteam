@@ -25,24 +25,23 @@ public class ReserveServlet extends HttpServlet {
 			String action = request.getParameter("action");
 			ReserveDAO dao = new ReserveDAO();
 			HttpSession session = request.getSession(false);
-			if (session == null) {
+/*			if (session == null) {
 				request.getAttribute("message");
 				gotoPage(request, response, "/ReserveCheck.jsp");
 				return;
-			}
+			}*/
 
 			if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				List<ReserveBean> list = dao.name_serch(cID);
-				request.setAttribute("r", list);
-				
-
+				request.setAttribute("A", list);
+			/*
 				session.getAttribute("ManagementdID");
 				List<ReserveBean> list2 = dao.Document_serch("ManagementdID");
-				request.setAttribute("a", list2);
-
+				request.setAttribute("B", list2);
 				RequestDispatcher rd = request.getRequestDispatcher("/ReserveCheck.jsp");
 				rd.forward(request, response);
+				*/
 
 			}
 		} catch (DAOException e) {
@@ -51,6 +50,7 @@ public class ReserveServlet extends HttpServlet {
 			gotoPage(request, response, "/errorTOP.jsp");
 		}
 	}
+
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(page);

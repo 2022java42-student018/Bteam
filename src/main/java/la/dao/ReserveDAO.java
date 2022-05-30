@@ -51,7 +51,7 @@ public class ReserveDAO {
 		}
 	}
 	public List<ReserveBean> Document_serch (String item_id) throws DAOException{
-		String sql ="SELECT * FROM customer WEHRE item_id = ?";
+		String sql ="SELECT * FROM Items WEHRE item_id = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, item_id);
@@ -66,7 +66,10 @@ public class ReserveDAO {
 					String aName= rs.getString("aName");
 					String pName= rs.getString("pName");
 					String pDate= rs.getString("pDate");
-					ReserveBean bean = new ReserveBean(pDate,isbn,dName,cCode,aName,pName,dID);
+					int renCID= rs.getInt("renCID");
+					int resCID= rs.getInt("resCID");
+					
+					ReserveBean bean = new ReserveBean(pDate,isbn,dName,cCode,aName,pName,dID,renCID,resCID);
 					list.add(bean);
 				}
 				return list;

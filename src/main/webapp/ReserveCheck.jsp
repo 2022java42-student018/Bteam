@@ -10,7 +10,11 @@
 <body>
 
 	<div style="text-align: center">
-		<h1>会員名:${cName}</h1>
+		<c:forEach items="${A}" var="doc2">
+			<h1>会員名:${doc2.cName}</h1>
+		</c:forEach>
+
+
 		<h1>資料予約</h1>
 		<table align="center" border="1">
 			<tr>
@@ -22,19 +26,9 @@
 				<td>出版社</td>
 				<td>出版日</td>
 			</tr>
-			<c:forEach r="${r}" var="doc">
-				<tr>
-					<td>${doc.dID}</td>
-					<td>${doc.isbn}</td>
-					<td>${doc.dName}</td>
-					<td>${doc.cCode}</td>
-					<td>${doc.aName}</td>
-					<td>${doc.pName}</td>
-					<td>${doc.aDate}</td>
-				</tr>
-			</c:forEach>
 
-			<c:forEach document2="${a}" var="doc">
+
+			<c:forEach items="${B}" var="doc">
 				<tr>
 					<td>${doc.dID}</td>
 					<td>${doc.isbn}</td>
