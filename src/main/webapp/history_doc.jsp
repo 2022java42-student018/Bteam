@@ -19,5 +19,6 @@
 		</c:forEach>
 	</table>
 
+<a href="/Bteam/showcustomer.jsp">会員情報へ</a>
 </body>
 </html>
