@@ -32,10 +32,16 @@
 		<br>
 		<table align="center" cellspacing="30">
 			<tr>
-				<td align="right"><a href="/Bteam/CustomersearchServlet?action=rental&cID=${customer.cID}">貸出中資料</a></td>
-				<td align="left"><a href="/Bteam/CustomersearchServlet?action=history&cID=${customer.cID}">貸出履歴</a></td>
+				<td align="right"><a
+					href="/Bteam/CustomersearchServlet?action=rental&cID=${customer.cID}">貸出中資料</a></td>
+				<td align="left"><a
+					href="/Bteam/CustomersearchServlet?action=history&cID=${customer.cID}">貸出履歴</a></td>
 			</tr>
 		</table>
+		<form action="/bteam/CustomersearchServlet" method="post">
+			<input type="hidden" name="action" value="gotoTOP">
+			<input type="submit"value="TOPへ">
+		</form>
 	</div>
 </body>
 </html>
