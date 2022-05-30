@@ -10,7 +10,7 @@
 <body>
 
 	<div style="text-align: center">
-		<h1>会員名:${cID}</h1>
+		<h1>会員名:${cName}</h1>
 
 
 		<h1>資料予約</h1>
@@ -26,16 +26,16 @@
 
 
 			<tr>
-				<td>${docment.dID}</td>
-				<td>${docment.isbn}</td>
-				<td>${docment.dName}</td>
-				<td>${docment.cCode}</td>
-				<td>${docment.aName}</td>
-				<td>${docment.pName}</td>
-				<td>${docment.aDate}</td>
+				<td>${document.dID}</td>
+				<td>${document.dName}</td>
+				<td>${document.cCode}</td>
+				<td>${document.aName}</td>
+				<td>${document.pName}</td>
+				<td>${document.aDate}</td>
 			</tr>
 		</table>
 		<form action="/Bteam/ReserveServlet" method="post">
+			<input type="hidden" name="cID" value="${cID}">
 			<input type="hidden" name="action" value="decision">
 			<input type="submit" value="予約">
 		</form>
