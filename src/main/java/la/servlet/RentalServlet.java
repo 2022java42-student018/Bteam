@@ -37,11 +37,15 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("message", "資料の返却期限が過ぎています\r\n"+ "資料返却を行ってください");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else {
+					dao.rental(cID,dID);
+					dao.rental(cID, dID);
 					request.setAttribute("dName",dao.getdName(dID));
+					request.setAttribute("message","以上の資料を貸出しました");
 					request.setAttribute("retlineDay", dao.getretlineDay(dID));
-					
 					gotoPage(request,response,"/RentalConfirmation.jsp");
 				}
+			}else if(action.equals("ret")) {
+				if()
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();

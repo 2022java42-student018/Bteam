@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>エラー</title>
+<title>TOPへ</title>
 </head>
 <body>
 	<div style = "text-align: center">
