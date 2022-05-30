@@ -8,14 +8,14 @@ public class CustomerBean implements Serializable{
 	private int cID;
 	private String cName;
 	private String cAddress;
-	private int cTell;
+	private String cTell;
 	private String cMail;
 	private Date cBday;
 	private Date cJdate;
 	private Date cWdate;
 
 
-public  CustomerBean(int cID, String cName,String cAddress,int cTell, String cMail, Date cBday , Date cJdate){
+public  CustomerBean(int cID, String cName,String cAddress,String cTell, String cMail, Date cBday , Date cJdate,Date cWdate){
 	
 
 	this.cID = cID;
@@ -28,54 +28,58 @@ public  CustomerBean(int cID, String cName,String cAddress,int cTell, String cMa
 	this.cWdate = cWdate;
 }
 
+public CustomerBean() {
+	
+}
+
 public int getcID() {
 	return cID;
 }
-public int setcID() {
-	return cID;
+public void setcID(int cID) {
+	this.cID= cID;
 }
 public String getcName() {
 	return cName;
 }
-public String setcName() {
-	return cName;
+public void setcName(String cName) {
+	this.cName= cName;
 }
 public String getcAddress() {
 	return cAddress;
 }
-public String setcAddress() {
-	return cAddress;
+public void setcAddress(String cAddress) {
+	this.cAddress=cAddress;
 }
-public int getcTell() {
+public String getcTell() {
 	return cTell;
 }
-public int setcTell() {
-	return cTell;
+public void setcTell(String cTell) {
+	this.cTell=cTell;
 }
 
 public String getcMail() {
 	return cMail;
 }
-public String setcMail() {
-	return cMail;
+public void setcMail(String cMail) {
+	this.cMail=cMail;
 }
 public Date getcBday() {
 	return cBday;
 }
-public Date setcBday() {
-	return cBday;
+public void setcBday(Date cBday) {
+	this.cBday=cBday;
 }
 public Date getcJdate() {
 	return cJdate;
 }
-public Date setcJdate() {
-	return cJdate;
+public void setcJdate(Date cJdate) {
+	this.cJdate=cJdate;
 }
 public Date getcWdate() {
 	return cWdate;
 }
-public Date setcWdate() {
-	return cWdate;
+public void setcWdate(Date cWdate) {
+	this.cWdate=cWdate;
 }
 
 }

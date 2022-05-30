@@ -36,7 +36,7 @@ lebel{
 <lebel>
 分野コード:
 </lebel>
-<input type = "text" name="cCode"  size="20" pattern="[0-9]*" title="英数字で入力してください" required >
+<input type = "text" name="cCode"  size="20" pattern="[0-9]*" title="数字で入力してください" required >
 </p>
 
 <p>
