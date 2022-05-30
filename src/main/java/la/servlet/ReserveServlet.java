@@ -27,24 +27,20 @@ public class ReserveServlet extends HttpServlet {
 				request.getAttribute("message");
 				gotoPage(request, response, "/ReserveCheck.jsp");
 				return;
-			}
-			if(action.equals("reserve")) {
-				int dID = (int)session.getAttribute("ManagementdID");
-				if(dao.reservestart(dID)) {
+			} else if (action.equals("reserve")) {
+				int dID = (int) session.getAttribute("ManagementdID");
+				if (dao.reservestart(dID)) {
 					request.setAttribute("message", "すでに予約されている資料です");
-					gotoPage(request,response,"/errorTOP.jsp");
-				}else {
-					gotoPage(request,response,"/reserve.html");
+					gotoPage(request, response, "/errorTOP.jsp");
+				} else {
+					gotoPage(request, response, "/reserve.html");
 				}
-			}
-
-			if (action.equals("Confirmation")) {
+			}else if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
-				int dID = (int)session.getAttribute("ManagementdID");
-				request.setAttribute("cName",dao.getcName(cID));
+				int dID = (int) session.getAttribute("ManagementdID");
+				request.setAttribute("cName", dao.getcName(cID));
 				request.setAttribute("document", dao.Document_serch(dID));
-				gotoPage(request,response,"/ReserveCheck.jsp");
-				
+				gotoPage(request, response, "/ReserveCheck.jsp");
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
