@@ -114,7 +114,8 @@ public class ReserveDAO {
 					String aName = rs.getString("aName");
 					String pName = rs.getString("pName");
 					Date pDate = rs.getDate("pDate");
-					 bean = new ReserveBean(dID, dName, cCode, aName, pName, pDate);
+					int rescID = rs.getInt("rescid");
+					 bean = new ReserveBean(dID, dName, cCode, aName, pName, pDate, rescID);
 				}
 				return bean;
 			} catch (SQLException e) {

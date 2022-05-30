@@ -13,14 +13,16 @@ public class ReserveBean implements Serializable {
 	private String aName;
 	private String pName;
 	private Date pDate;
+	private int rescID;
 
-	public ReserveBean(int dID,String dName, int cCode, String aName, String pName, Date pDate) {
+	public ReserveBean(int dID,String dName, int cCode, String aName, String pName, Date pDate, int rescID) {
 		this.dID=dID;
 		this.dName = dName;
 		this.aName = aName;
 		this.cCode = cCode;
 		this.pName = pName;
 		this.pDate = pDate;
+		this.rescID = rescID;
 	}
 
 	public ReserveBean() {
@@ -73,6 +75,14 @@ public class ReserveBean implements Serializable {
 
 	public void setpDate(Date pDate) {
 		this.pDate = pDate;
+	}
+
+	public int getRescID() {
+		return rescID;
+	}
+
+	public void setRescID(int rescID) {
+		this.rescID = rescID;
 	}
 
 

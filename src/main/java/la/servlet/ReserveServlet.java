@@ -37,7 +37,13 @@ public class ReserveServlet extends HttpServlet {
 				int dID = (int) session.getAttribute("ManagementdID");
 				request.setAttribute("cName", dao.getcName(cID));
 				request.setAttribute("cID", cID);
-				session.setAttribute("document", dao.Document_serch(dID));
+				ReserveBean document = dao.Document_serch(dID);
+				if (document.getRescID() > 0) {
+					request.setAttribute("message", "すでに予約されている資料です");
+					gotoPage(request, response, "/errorTOP.jsp");
+					return;
+				}
+				session.setAttribute("document", document);
 				gotoPage(request, response, "/ReserveCheck.jsp");
 				
 			} else if (action.equals("decision")) {
