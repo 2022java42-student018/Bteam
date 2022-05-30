@@ -74,7 +74,7 @@ public class ReserveDAO {
 					ResultSet rs = st.executeQuery();) {
 				String cName = null;
 				if (rs.next()) {
-					cName = rs.getString("dName");
+					cName = rs.getString("cName");
 				}
 				return cName;
 			} catch (SQLException e) {
@@ -88,13 +88,15 @@ public class ReserveDAO {
 	}
 
 	public List<ReserveBean> Document_serch(int dID) throws DAOException {
-		String sql = "SELECT * FROM Items WEHRE dID = ?";
+		String sql = "SELECT * FROM item WHERE dID = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, dID);
 
-			try (ResultSet rs = st.executeQuery();) {
+			try (
+				ResultSet rs = st.executeQuery();) {
 				List<ReserveBean> list = new ArrayList<ReserveBean>();
+				while(rs.next()){
 				String dName = rs.getString("dName");
 				int cCode = rs.getInt("cCode");
 				String aName = rs.getString("aName");
@@ -102,6 +104,7 @@ public class ReserveDAO {
 				Date pDate = rs.getDate("pDate");
 				ReserveBean bean = new ReserveBean(dID, dName, cCode, aName, pName, pDate);
 				list.add(bean);
+				}
 				return list;
 			} catch (SQLException e) {
 				e.printStackTrace();
