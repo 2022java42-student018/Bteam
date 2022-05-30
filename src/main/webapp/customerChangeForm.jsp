@@ -4,27 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Customer Information Add Page </title>
-<style>
-.div input:firsr-of-type{
-margin-right : 20px;
-}
+<title>Customer Information Change Form Page</title>
 
+<style>
 lebel{
  display : inline-block;
  text-align : right;
  width: 150px;
- 
  }
+ 
+ .div input:firsr-of-type{
+margin-right : 20px;
+}
 </style>
 </head>
 <body>
 
+<br>
+<h2 style ="text-align : center">お客様情報変更フォーム</h2>
+<br><br>
 
-<h2 style = "text-align : center">お客様情報登録フォーム</h2>
 <div style = "text-align : center">
 <br>
-<form action = "/Bteam/CustomerAddServlet" method = "post">
+<form action = "/Bteam/CustomerChangeServlet" method = "post">
 
 <p>
 <lebel>
@@ -75,7 +77,5 @@ Eメール:
 </div>
 
  
-
-
 </body>
 </html>

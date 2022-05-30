@@ -31,7 +31,7 @@ public class DocumentServlet extends HttpServlet {
 
 			if (action.equals("dIDSearch")) {
 				String dID1 = (request.getParameter("dID"));
-				Pattern pattern = Pattern.compile("^[0-9]$");
+				Pattern pattern = Pattern.compile("^[0-9]+$");
 				Matcher matcher = pattern.matcher(dID1);
 				if (matcher.find() == true) {
 					int dID = Integer.parseInt(dID1);
