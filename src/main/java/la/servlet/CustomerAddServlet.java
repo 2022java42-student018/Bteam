@@ -44,7 +44,7 @@ public class CustomerAddServlet extends HttpServlet {
 		}catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "入力した内容に不備があります");
-			gotoPage(request, response, "/customertAddError.jsp");
+			gotoPage(request, response, "/customerAddError.jsp");
 		}
 	}
 	

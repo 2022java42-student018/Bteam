@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import la.bean.CustomerBean;
 
@@ -27,7 +25,7 @@ public class CustomerdeleteDAO {
 		}
 	}
 
-	public boolean cWdateCheck(int cID) throws DAOException {
+	public int cWdateCheck(int cID) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT cWdate FROM customer WHERE cID= ?";
 
@@ -40,11 +38,12 @@ public class CustomerdeleteDAO {
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				boolean Check = false;
+				int num = 0;
 				if (rs.next()) {
-					Check = true;
+					 num = rs.getInt("cWdate");
+					
 				}
-				return Check;
+				return num;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("正しく入力してください");
@@ -56,7 +55,7 @@ public class CustomerdeleteDAO {
 		}
 	}
 
-	public List<CustomerBean> getcustomer(int cID) throws DAOException {
+	public CustomerBean getcustomer(int cID) throws DAOException {
 		String sql = "SELECT * FROM customer WHERE cID = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -64,7 +63,7 @@ public class CustomerdeleteDAO {
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				List<CustomerBean> list = new ArrayList<CustomerBean>();
+				CustomerBean bean = null;
 				while (rs.next()) {
 					String cName = rs.getString("cName");
 					String cAddress = rs.getString("cAddress");
@@ -72,10 +71,11 @@ public class CustomerdeleteDAO {
 					String cMail = rs.getString("cMail");
 					Date cBday = rs.getDate("cBday");
 					Date cJdate = rs.getDate("cJdate");
-					CustomerBean bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate, null);
-					list.add(bean);
+					int cID1 = rs.getInt("cID");
+					bean = new CustomerBean(cID1, cName, cAddress, cTell, cMail, cBday, cJdate, null);
+					
 				}
-				return list;
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("正しく操作してください");
@@ -91,7 +91,8 @@ public class CustomerdeleteDAO {
 		Date Date = new Date();
 		long timeInMilliSeconds = Date.getTime();
 		java.sql.Date today = new java.sql.Date(timeInMilliSeconds);
-
+		System.out.println(today);
+		
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setDate(1, today);

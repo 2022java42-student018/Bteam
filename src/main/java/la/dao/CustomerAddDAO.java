@@ -25,8 +25,8 @@ public class CustomerAddDAO {
 	
 	public CustomerBean Add(String lecName, String lecAddress,String lecTell, String lecMail, Date lecBday) 
 	throws DAOException{
-		String sql = "INSERT INTO customer (cName, cAddress, cTell,cMail, cBday)VALUES(?,?,?,?,?)";
-		String sql1 = "SELECT cName, cAddress, cTell,cMail, cBday FROM customer WHERE cName = ? AND cTell = ?";
+		String sql = "INSERT INTO customer (cName, cAddress, cTell,cMail, cBday,cJdate)VALUES(?,?,?,?,?,current_date)";
+		String sql1 = "SELECT cName, cAddress, cTell,cMail, cBday, cJdate FROM customer WHERE cName = ? AND cTell = ?";
 		try(Connection con = DriverManager.getConnection(url,user,pass);
 			PreparedStatement st = con.prepareStatement(sql);){
 			st.setString(1, lecName);
@@ -49,7 +49,8 @@ public class CustomerAddDAO {
 						String cTell = rs.getString("cTell");
 						String cMail = rs.getString("cMail");
 						java.sql.Date cBday = rs.getDate("cBday");
-						bean = new CustomerBean(cName, cAddress, cTell, cMail, cBday);
+						java.sql.Date cJdate = rs.getDate("cJdate");
+						bean = new CustomerBean(cName, cAddress, cTell, cMail, cBday,cJdate);
 						
 					}
 					return bean;

@@ -26,9 +26,9 @@ public class RentalDAO {
 	}
 
 	// 資料テーブルに会員IDがあるか確認
-	public boolean renIDCheck(int dID) throws DAOException {
+	public int renIDCheck(int dID) throws DAOException {
 		// SQL文の作成
-		String sql = "SELECT renCID FROM item WHERE dID= ?";
+		String sql = "SELECT * FROM item WHERE dID= ?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
@@ -39,11 +39,11 @@ public class RentalDAO {
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				boolean Check = false;
+				int num = 0;
 				if (rs.next()) {
-					Check = true;
+					num = rs.getInt("renCID");
 				}
-				return Check;
+				return num;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("会員IDまたは資料IDを" + "/r" + "正しく入力してください");
@@ -55,9 +55,9 @@ public class RentalDAO {
 		}
 	}
 
-	public boolean resIDCheck(int dID) throws DAOException {
+	public int resIDCheck(int dID) throws DAOException {
 		// SQL文の作成
-		String sql = "SELECT resCID FROM item WHERE dID= ?";
+		String sql = "SELECT * FROM item WHERE dID= ?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
@@ -68,11 +68,11 @@ public class RentalDAO {
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				boolean Check = false;
+				int num = 0;
 				if (rs.next()) {
-					Check = true;
+					num=rs.getInt("resCID");
 				}
-				return Check;
+				return num;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("会員IDまたは資料IDを" + "/r" + "正しく入力してください");
@@ -85,9 +85,9 @@ public class RentalDAO {
 	}
 
 	// 5冊以下か DAO
-	public boolean fivebooks(int cID) throws DAOException {
+	public boolean  fivebooks(int cID) throws DAOException {
 		// SQL文の作成
-		String sql = "SELECT renCID FROM item WHERE renCID =?";
+		String sql = "SELECT COUNT(renCID) AS cnt  FROM item WHERE renCID =?";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
@@ -97,12 +97,12 @@ public class RentalDAO {
 			st.setInt(1, cID);
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				boolean Check = true;
-				rs.last();
-				int renDocument = rs.getRow();
-
-				if (renDocument >= 5) {
-					Check = false;
+				int count = 0;
+				while(rs.next()) {
+					count = rs.getInt("cnt");
+				} boolean Check = false; 
+				if (count >= 5) {
+					Check = true;
 				}
 				return Check;
 			} catch (SQLException e) {

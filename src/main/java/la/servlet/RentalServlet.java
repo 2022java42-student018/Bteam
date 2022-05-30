@@ -27,10 +27,10 @@ public class RentalServlet extends HttpServlet {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = Integer.parseInt(request.getParameter("dID"));
 				
-				if(dao.renIDCheck(dID)) {
+				if(dao.renIDCheck(dID) != 0 ) {
 					request.setAttribute("message", "すでに資料が貸出または予約されています");
 					gotoPage(request,response,"/errorRental.jsp");
-				}else if(dao.resIDCheck(dID)) {
+				}else if(dao.resIDCheck(dID) !=0) {
 					request.setAttribute("message", "すでに資料が貸出または予約されています");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else if(dao.fivebooks(cID)) {
@@ -61,7 +61,7 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("dName",dao.getdName(dID));
 					request.setAttribute("message","以上の資料を返却しました");
 					
-					if(dao.resIDCheck(dID)) {
+					if(dao.resIDCheck(dID) !=0) {
 						request.setAttribute("resmessage","予約有り");
 					}
 					gotoPage(request,response,"/Return.jsp");

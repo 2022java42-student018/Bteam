@@ -12,18 +12,18 @@
 <body>
 <div style="text-align:center;">
 	<h1>貸出フォーム</h1> 
-    <form action="/bteam/RentalServlet" method="post">
+    <form action="/Bteam/RentalServlet" method="post">
         <div class="box">
-            会員ID:<input type="number" name="cID"><br>
-           	資料ID:<input type="number" name="dID"><br>
+            会員ID:<input type="text" name="cID" pattern="^[0-9]+$" title="数字で入力してください" required><br>
+           	資料ID:<input type="text" name="dID"pattern="^[0-9]+$" title="数字で入力してください" required><br>
         	 <input type="submit" value="送信">
         	 <input type ="hidden" name="action" value = "ren" >
         </div>
     </form>
     <h1>返却フォーム</h1>
-    <form action="/bteam/RentalServlet" method="post">
+    <form action="/Bteam/RentalServlet" method="post">
         <div class="box">
-            資料ID:<input type="text" name="dID"><br>
+            資料ID:<input type="text" name="dID" pattern="^[0-9]+$" title="数字で入力してください" required><br>
             <input type="submit" value="送信">
             <input type ="hidden" name="action" value = "ret">
         </div>

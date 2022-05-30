@@ -1,7 +1,6 @@
 package la.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,18 +27,22 @@ public class CustomerdeleteServlet extends HttpServlet {
 			// モデルのDAOを生成
 			CustomerdeleteDAO dao = new CustomerdeleteDAO();
 			// 貸出
+			int cID = Integer.parseInt(request.getParameter("cID"));
+			
 			if (action.equals("Confirm")) {
-				int cID = Integer.parseInt(request.getParameter("cID"));
-				if (dao.cWdateCheck(cID)) {
+				
+				int num = dao.cWdateCheck(cID);
+				if (num != 0) {
 					request.setAttribute("message", "退会済みの会員です");
 					gotoPage(request, response, "/errorTOP.jsp");
 				} else {
-					List<CustomerBean> list = dao.getcustomer(cID);
+					
+					CustomerBean list = dao.getcustomer(cID);
 					request.setAttribute("customer", list);
 					gotoPage(request, response, "/CustomerdeleteConfirm.jsp");
 				}
 			} else if (action.equals("delete")) {
-				int cID = Integer.parseInt(request.getParameter("cID"));
+				System.out.println(cID);
 				dao.Delete(cID);
 				request.setAttribute("message", "退会が完了しました");
 				gotoPage(request, response, "/errorTOP.jsp");

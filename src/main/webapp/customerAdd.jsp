@@ -13,11 +13,11 @@
 <br>
 <table border ="1" align ="center">
 <tr>
-<td>氏名</td><td>住所</td><td>電話番号</td><td>Eメール</td><td>生年月日</td>
+<td>氏名</td><td>住所</td><td>電話番号</td><td>Eメール</td><td>生年月日</td><td>入会年月日</td>
 </tr>
 
 <tr>
-<td>${AddCustomer.cName }</td><td>${AddCustomer.cAddress }</td><td>${AddCustomer.cTell }</td><td>${AddCustomer.cMail }</td><td>${AddCustomer.cBday }</td>
+<td>${AddCustomer.cName }</td><td>${AddCustomer.cAddress }</td><td>${AddCustomer.cTell }</td><td>${AddCustomer.cMail }</td><td>${AddCustomer.cBday }</td><td>${AddCustomer.cJdate }
 </tr>
 </table>
 <br><br>
