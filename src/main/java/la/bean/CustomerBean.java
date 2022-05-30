@@ -32,6 +32,16 @@ public CustomerBean() {
 	
 }
 
+public CustomerBean(String cName, String cAddress, String cTell, String cMail, Date cBday) {
+	
+	this.cName = cName;
+	this.cAddress = cAddress;
+	this.cTell = cTell;
+	this.cMail = cMail;
+	this.cBday = cBday;
+	
+}
+
 public int getcID() {
 	return cID;
 }
