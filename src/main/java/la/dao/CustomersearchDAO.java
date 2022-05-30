@@ -26,41 +26,7 @@ public class CustomersearchDAO {
 		}
 	}
 
-	public List<CustomerBean> Emailcheck(String email) throws DAOException {
-		String sql = "SELECT * FROM customer WHERE cmail =?";
-
-		try (Connection con = DriverManager.getConnection(url, user, pass);
-				PreparedStatement st = con.prepareStatement(sql);) {
-
-			st.setString(1, email);
-
-			try (ResultSet rs = st.executeQuery();) {
-				List<CustomerBean> list = new ArrayList<CustomerBean>();
-				int cID = rs.getInt("cID");
-				String cName = rs.getString("cName");
-				String cAddress = rs.getString("cAddress");
-				String cTell = rs.getString("cTell");
-				String cMail = rs.getString("cMail");
-				java.sql.Date cBday = rs.getDate("cBday");
-				java.sql.Date cJdate = rs.getDate("cJdate");
-				CustomerBean bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, null);
-				list.add(bean);
-
-				return list;
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります1");
-			}
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります2");
-		}
-	}
-
-	public List<CustomerBean> emailSearch(String eMail) throws DAOException {
+	public CustomerBean emailSearch(String eMail) throws DAOException {
 		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -69,7 +35,7 @@ public class CustomersearchDAO {
 			st.setString(1, eMail);
 
 			try (ResultSet rs = st.executeQuery();) {
-				List<CustomerBean> list = new ArrayList<CustomerBean>();
+				CustomerBean bean = null;
 				while (rs.next()) {
 					int cID = rs.getInt("cID");
 					String cName = rs.getString("cName");
@@ -78,10 +44,9 @@ public class CustomersearchDAO {
 					String cMail = rs.getString("cMail");
 					java.sql.Date cBday = rs.getDate("cBday");
 					java.sql.Date cJdate = rs.getDate("cJdate");
-					CustomerBean bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate);
-					list.add(bean);
+					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday,cJdate, null);
 				}
-				return list;
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("入力した内容に不備があります");
@@ -102,14 +67,15 @@ public class CustomersearchDAO {
 
 			try (ResultSet rs = st.executeQuery();) {
 				List<lend_docBean> list = new ArrayList<lend_docBean>();
+				lend_docBean bean = null;
 				while (rs.next()) {
 					int dID = rs.getInt("dID");
-					String dname = rs.getString("dName");// タイトル
+					String dName = rs.getString("dName");// タイトル
 					String pName = rs.getString("pName");// 出版社
 					String aName = rs.getString("aName");// 著者
 					java.sql.Date renDate = rs.getDate("renDate ");
 					java.sql.Date retDate = rs.getDate("retDate ");
-					lend_docBean bean = new lend_docBean();
+					bean = new lend_docBean(dID,dName,pName,aName,renDate,retDate);
 					list.add(bean);
 				}
 				return list;
