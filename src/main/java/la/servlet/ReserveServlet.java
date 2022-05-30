@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import la.bean.ReserveBean;
 import la.dao.DAOException;
 import la.dao.ReserveDAO;
 
@@ -31,16 +32,22 @@ public class ReserveServlet extends HttpServlet {
 				} else {
 					gotoPage(request, response, "/reserve.html");
 				}
-			}else if (action.equals("Confirmation")) {
+			} else if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = (int) session.getAttribute("ManagementdID");
 				request.setAttribute("cName", dao.getcName(cID));
-				request.setAttribute("document", dao.Document_serch(dID));
+				request.setAttribute("cID", cID);
+				session.setAttribute("document", dao.Document_serch(dID));
 				gotoPage(request, response, "/ReserveCheck.jsp");
-			}else if(action.equals("decision")) {
-				int cID = Integer.parseInt(request.getParameter("cID"));
-				int dID = (int) session.getAttribute("ManagementdID");
 				
+			} else if (action.equals("decision")) {
+				int cID = Integer.parseInt(request.getParameter("cID"));
+				ReserveBean reserveBean = (ReserveBean) session.getAttribute("document");
+				int dID =reserveBean.getdID();
+				dao.Document_serch1(cID, dID);
+			    request.setAttribute("message","予約が完了しました。");
+				gotoPage(request, response, "/errorTOP.jsp");
+
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
