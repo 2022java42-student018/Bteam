@@ -20,33 +20,31 @@ public class ReserveServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		try {
+			request.setCharacterEncoding("UTF-8");
 			String action = request.getParameter("action");
 			ReserveDAO dao = new ReserveDAO();
 			HttpSession session = request.getSession(false);
+/*			if (session == null) {
+				request.getAttribute("message");
+				gotoPage(request, response, "/ReserveCheck.jsp");
+				return;
+			}*/
+			if(action.equals("reserve")) {
+				String sessiondID = (String)session.getAttribute("ManagementdID");
+				int dID = Integer.parseInt(sessiondID);
+				if(dao.reservestart(dID)) {
+					request.setAttribute("message", "すでに予約されている資料です");
+					gotoPage(request,response,"/errorTOP.jsp");
+				}else {
+					gotoPage(request,response,"/resserv.html");
+				}
+			}
 
 			if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				List<ReserveBean> list = dao.name_serch(cID);
 				request.setAttribute("A", list);
-
-				if (list.size() == 0) {
-					request.setAttribute("message", "会員IDが間違っています");
-					gotoPage(request, response, "/errorTOP.jsp");
-
-				} else if (request.getParameter("cID") == null) {
-					request.setAttribute("message", "会員IDが未入力です");
-					gotoPage(request, response, "/errorTOP.jsp");
-
-				} else {
-					/*
-					 * session.getAttribute("ManagementdID"); List<ReserveBean> list2 =
-					 * dao.Document_serch("ManagementdID"); request.setAttribute("B", list2);
-					 * RequestDispatcher rd = request.getRequestDispatcher("/ReserveCheck.jsp");
-					 * rd.forward(request, response);
-					 */
-				}
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
