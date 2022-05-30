@@ -41,14 +41,14 @@ public class ReserveServlet extends HttpServlet {
 			if (action.equals("Confirmation")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = (int)session.getAttribute("ManagementdID");
-				request.setAttribute("cName",cID);
+				request.setAttribute("cName",dao.getcName(cID));
 				request.setAttribute("document", dao.Document_serch(dID));
-				gotoPage(request,response,"/ReserveCheck.html");
+				gotoPage(request,response,"/ReserveCheck.jsp");
 				
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "既に予約されています");
+			request.setAttribute("message", "内部エラーです");
 			gotoPage(request, response, "/errorTOP.jsp");
 		}
 	}

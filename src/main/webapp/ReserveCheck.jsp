@@ -10,16 +10,13 @@
 <body>
 
 	<div style="text-align: center">
-		<c:forEach items="${A}" var="doc2">
-			<h1>会員名:${doc2.cName}</h1>
-		</c:forEach>
+		<h1>会員名:${cID}</h1>
 
 
 		<h1>資料予約</h1>
 		<table align="center" border="1">
 			<tr>
 				<td>資料ID</td>
-				<td>ISBN番号</td>
 				<td>資料名</td>
 				<td>分野コード</td>
 				<td>著者名</td>
@@ -28,21 +25,19 @@
 			</tr>
 
 
-			<c:forEach items="${B}" var="doc">
-				<tr>
-					<td>${doc.dID}</td>
-					<td>${doc.isbn}</td>
-					<td>${doc.dName}</td>
-					<td>${doc.cCode}</td>
-					<td>${doc.aName}</td>
-					<td>${doc.pName}</td>
-					<td>${doc.aDate}</td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td>${docment.dID}</td>
+				<td>${docment.isbn}</td>
+				<td>${docment.dName}</td>
+				<td>${docment.cCode}</td>
+				<td>${docment.aName}</td>
+				<td>${docment.pName}</td>
+				<td>${docment.aDate}</td>
+			</tr>
 		</table>
 		<form action="/Bteam/ReserveServlet" method="post">
-			<input type="hidden" name="action" value="reserve"> <input
-				type="submit" value="予約">
+			<input type="hidden" name="action" value="decision">
+			<input type="submit" value="予約">
 		</form>
 	</div>
 </body>
