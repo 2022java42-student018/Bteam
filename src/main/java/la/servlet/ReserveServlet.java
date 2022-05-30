@@ -40,6 +40,8 @@ public class ReserveServlet extends HttpServlet {
 			}else if(action.equals("decision")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = (int) session.getAttribute("ManagementdID");
+				
+				
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
