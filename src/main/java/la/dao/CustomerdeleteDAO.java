@@ -12,8 +12,8 @@ import java.util.List;
 import la.bean.CustomerBean;
 
 public class CustomerdeleteDAO {
-	private String url = "jdbc:postgresql:bteam";
-	private String user = "postgres";
+	private String url = "jdbc:postgresql:Bteam";
+	private String user = "student";
 	private String pass = "himitu";
 
 	public CustomerdeleteDAO() throws DAOException {
