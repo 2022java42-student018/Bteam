@@ -25,8 +25,8 @@ public class DocumentAddDAO {
 
 	public DocumentInfoBean Add(int leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)
 			throws DAOException {
-		String sql = "INSERT INTO bitem (isbn, cCode, dName, aName, pName, pDate,aDate) VALUES (?,?,?,?,?,?,current_date)";
-		String sql2 = "SELECT dID, isbn, cCode, dName, aName, pName, pDate, aDate FROM bitem WHERE isbn = ? AND dName = ?";
+		String sql = "INSERT INTO item (isbn, cCode, dName, aName, pName, pDate,aDate) VALUES (?,?,?,?,?,?,current_date)";
+		String sql2 = "SELECT dID, isbn, cCode, dName, aName, pName, pDate, aDate FROM item WHERE isbn = ? AND dName = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, leisbn);
@@ -74,7 +74,7 @@ public class DocumentAddDAO {
 	}
 
 	public int CountDocument(String ledName) throws DAOException {
-		String sql3 = "SELECT COUNT (*) AS cnt FROM bitem where dName =?" ;
+		String sql3 = "SELECT COUNT (*) AS cnt FROM item where dName =?" ;
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql3);) {
 			st.setString(1, ledName);

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import la.bean.CustomerBean;
 import la.bean.DocumentInfoBean;
+import la.bean.historyBean;
 import la.dao.CustomerDAO;
 import la.dao.DAOException;
 
@@ -34,12 +35,12 @@ public class CustomersearchServlet extends HttpServlet {
 			
 			
 			 if (session != null) { // セッションオブジェクトなし
-			 session.removeAttribute("costomerdata");
+			 session.removeAttribute("Customerdata");
 			 }
-           String eMail =request.getParameter("eMail");
+           String eMail =request.getParameter("email");
          List<CustomerBean> list= dao.emailSearch(eMail);	
          request.setAttribute("customer", list);
-         gotoPage(request,response,"/showCustomer.jsp");//showcustomerﾍ
+         gotoPage(request,response,"/showcustomer.jsp");//showcustomerﾍ
          
      
          } else if (action.equals("renddoc")) {
@@ -47,12 +48,18 @@ public class CustomersearchServlet extends HttpServlet {
              int cID = Integer.parseInt(request.getParameter("cID"));
              List<DocumentInfoBean> list = dao.renddoc(cID);
               
-             request.setAttribute("document" , list);
+             request.setAttribute("document",list);
 
              gotoPage(request, response, "/lend_doc.jsp");// lend_doc.jspﾍ
            }
 		if (action.equals("history")){
 			
+			int cID = Integer.parseInt(request.getParameter("cID"));
+			
+			 List<historyBean> list = dao.history(cID);
+			
+			 request.setAttribute("history",list);
+			 gotoPage(request, response, "/history.jsp");
 		}
     }catch(DAOException e) {
 		e.printStackTrace();
@@ -60,13 +67,18 @@ public class CustomersearchServlet extends HttpServlet {
 		gotoPage(request,response,"/custmer_error.jsp");
 	}
   }
-    
    
-    
+  
     private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
             throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		doGet(request, response);
+	}
 
 }
