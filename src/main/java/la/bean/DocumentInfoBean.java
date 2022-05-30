@@ -7,7 +7,7 @@ import java.sql.Date;
 public class DocumentInfoBean implements Serializable {
 
 	private int dID;
-	private int isbn;
+	private long isbn;
 	private int cCode;
 	private String dName;
 	private String aName;
@@ -17,7 +17,7 @@ public class DocumentInfoBean implements Serializable {
 	private String renCID;
 	private String resCID;
 	
-	public DocumentInfoBean(int dID, int isbn, int cCode, String dName, String aName, String pName,Date pDate, Date aDate, String renCID, String resCID) {
+	public DocumentInfoBean(int dID, long isbn, int cCode, String dName, String aName, String pName,Date pDate, Date aDate, String renCID, String resCID) {
 		this.dID=dID;
 		this.isbn=isbn;
 		this.cCode=cCode;
@@ -30,7 +30,7 @@ public class DocumentInfoBean implements Serializable {
 		this.resCID=resCID;
 	}
 	
-	public DocumentInfoBean(int dID, int isbn, int cCode, String dName, String aName, String pName, Date pDate) {
+	public DocumentInfoBean(int dID, long isbn, int cCode, String dName, String aName, String pName, Date pDate) {
 		this.dID=dID;
 		this.isbn=isbn;
 		this.cCode=cCode;
@@ -40,7 +40,7 @@ public class DocumentInfoBean implements Serializable {
 		this.pDate=pDate;
 	}
 	
-	public DocumentInfoBean(int dID, int isbn, int cCode, String dName, String aName, String pName, Date pDate,Date aDate) {
+	public DocumentInfoBean(int dID, long isbn, int cCode, String dName, String aName, String pName, Date pDate,Date aDate) {
 		this.dID=dID;
 		this.isbn=isbn;
 		this.cCode=cCode;
@@ -64,11 +64,11 @@ public class DocumentInfoBean implements Serializable {
 		this.dID=dID;
 	}
 	
-	public int getisbn() {
+	public long getisbn() {
 		return isbn;
 	}
 	
-	public void setisbn(int isbn) {
+	public void setisbn(long isbn) {
 		this.isbn=isbn;
 	}
 	

@@ -27,7 +27,7 @@ public class DocumentAddServlet extends HttpServlet {
 			
 			
 			if(action.equals("add")) {
-				int isbn =Integer.parseInt(request.getParameter("isbn"));
+				long isbn =Long.parseLong(request.getParameter("isbn"));
 				int cCode = Integer.parseInt(request.getParameter("cCode"));
 				String dName = request.getParameter("dName");
 				String aName = request.getParameter("aName");

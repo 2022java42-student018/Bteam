@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import la.bean.DocumentInfoBean;
 
 public class DocumentAddDAO {
-	String url = "jdbc:postgresql:Bteam";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
 
@@ -23,13 +23,13 @@ public class DocumentAddDAO {
 		}
 	}
 
-	public DocumentInfoBean Add(int leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)
+	public DocumentInfoBean Add(long leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)
 			throws DAOException {
 		String sql = "INSERT INTO item (isbn, cCode, dName, aName, pName, pDate,aDate) VALUES (?,?,?,?,?,?,current_date)";
 		String sql2 = "SELECT dID, isbn, cCode, dName, aName, pName, pDate, aDate FROM item WHERE isbn = ? AND dName = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setInt(1, leisbn);
+			st.setLong(1, leisbn);
 			st.setInt(2, lecCode);
 			st.setString(3, ledName);
 			st.setString(4, leaName);
@@ -39,7 +39,7 @@ public class DocumentAddDAO {
 			//
 
 			try (PreparedStatement st1 = con.prepareStatement(sql2);) {
-				st1.setInt(1, leisbn);
+				st1.setLong(1, leisbn);
 				st1.setString(2, ledName);
 				//
 				try (ResultSet rs = st1.executeQuery();) {
@@ -47,7 +47,7 @@ public class DocumentAddDAO {
 					DocumentInfoBean bean = null;
 					while (rs.next()) {
 						int dID = rs.getInt("dID");
-						int isbn = rs.getInt("isbn");
+						long isbn = rs.getLong("isbn");
 						int cCode = rs.getInt("cCode");
 						String dName = rs.getString("dName");
 						String aName = rs.getString("aName");

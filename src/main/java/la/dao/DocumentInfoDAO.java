@@ -34,7 +34,7 @@ public class DocumentInfoDAO {
 				DocumentInfoBean bean = null;
 				while(rs.next()) {
 					int dID = rs.getInt("dID");
-					int isbn = rs.getInt("isbn");
+					long isbn = rs.getLong("isbn");
 					int cCode = rs.getInt("cCode");
 					String dName = rs.getString("dName");
 					String aName = rs.getString("aName");
@@ -60,11 +60,11 @@ public class DocumentInfoDAO {
 				return bean;
 			}catch(SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります1");
+				throw new DAOException("入力した内容に不備があります");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります2");
+			throw new DAOException("入力した内容に不備があります");
 		}
 	}
 			
