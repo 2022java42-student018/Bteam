@@ -18,7 +18,7 @@
 
 <tr>
 <td>${AddDocument.dID}</td><td>${ AddDocument.isbn}</td><td>${AddDocument.cCode }</td><td>${AddDocument.dName }</td><td>${AddDocument.aName }</td><td>${AddDocument.pName }</td><td>${AddDocument.pDate }</td><td>${AddDocument.aDate }</td>
-
+</tr>
 </table>
 <br>
 <br>
@@ -26,7 +26,7 @@
 <table border ="0" style ="text-align : center">
 <tr>
 <td>
-<form action = "/Bteam/documentAddForm.jsp">
+<form action = "/Bteam/documentAddForm.jsp" method ="post">
 <input type ="submit" value ="登録TOPへ">
 </form>
 </td>

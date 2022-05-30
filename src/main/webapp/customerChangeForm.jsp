@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Information Change Form Page</title>
+
+<style>
+lebel{
+ display : inline-block;
+ text-align : right;
+ width: 150px;
+ }
+ 
+ .div input:firsr-of-type{
+margin-right : 20px;
+}
+</style>
+</head>
+<body>
+
+<br>
+<h2 style ="text-align : center">お客様情報変更フォーム</h2>
+<br><br>
+
+<div style = "text-align : center">
+<br>
+<form action = "/Bteam/CustomerChangeServlet" method = "post">
+
+<p>
+<lebel>
+氏名:
+</lebel>
+<input type = "text" name = "cName" size = "40" pattern = "\S|\S.*?\S"  required>
+</p>
+
+<p>
+<lebel>
+住所:
+</lebel>
+<input type = "text" name ="cAddress" size = "40" pattern = "\S|\S.*?\S"  required>
+</p>
+
+<p>
+<lebel>
+電話番号:
+</lebel>
+<input type = "text" name = "cTell" size ="40" pattern = "\d{2,4}-\d{2,4}-\d{3,4}" title="形式を正して数字で入力してください(例：010-1111-1221)" required>
+</p>
+
+<p>
+<lebel>
+Eメール:
+</lebel>
+<input type = "email" name="cMail" size ="40" pattern= "^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$" title="英数字で入力してください" required>
+</p>
+
+<p>
+<lebel>
+生年月日:
+</lebel>
+<input type = "text" name ="cBday"  size="40" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください(例：1999-01-11)" required>
+</p>
+
+<br>
+<input type = "submit" value ="登録" size ="56">
+<input type ="hidden" name="action" value ="add">
+</form>
+</div>
+<br>
+
+<div align ="center">
+<form action ="/Bteam/TOP.jsp" method = "post">
+<input type ="submit" value ="TOPへ">
+</form>
+</div>
+
+ 
+</body>
+</html>

@@ -3,7 +3,7 @@
 <div style = "text-align: center">
 <div style="border: #00FFFF solid 1px; border-left: #808000 solid 8px; padding: 20px; font-size: 100%;">会員管理</div>
 </div>
-<li><a href="/Bteam/customerAdd.jsp">会員登録</a></li>
-<li><a href="/Bteam/customerchange.html">会員変更</a></li>
+<li><a href="/Bteam/customerAddForm.jsp">会員登録</a></li>
+<li><a href="/Bteam/customerChangeForm.jsp">会員変更</a></li>
 <li><a href="/Bteam/customerdelete.html">会員退会</a></li>
 <li><a href="/Bteam/customersearch.html">会員検索</a></li>
