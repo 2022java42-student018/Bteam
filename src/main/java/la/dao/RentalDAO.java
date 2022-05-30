@@ -26,7 +26,7 @@ public class RentalDAO {
 	}
 
 	// 資料テーブルに会員IDがあるか確認
-	public boolean IDCheck(int dID) throws DAOException {
+	public boolean renIDCheck(int dID) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT renCID FROM item WHERE dID= ?";
 
@@ -54,7 +54,35 @@ public class RentalDAO {
 			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
 		}
 	}
+	
+	public boolean resIDCheck(int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT resCID FROM item WHERE dID= ?";
 
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PaeparedStatementオブジェクトの所得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// カテゴリの設定
+			st.setInt(1, dID);
+			try (
+					/// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				boolean Check = false;
+				if (rs.next()) {
+					Check = true;
+				}
+				return Check;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+		}
+	}
 	// 5冊以下か DAO
 	public boolean fivebooks(int cID) throws DAOException {
 		// SQL文の作成
@@ -248,6 +276,80 @@ public class RentalDAO {
 			st.setInt(1, cID);
 			st.setInt(2, dID);
 			st.setDate(3, today);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+		}
+	}
+	
+	public boolean retIDCheck(int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT renCID FROM item WHERE dID= ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PaeparedStatementオブジェクトの所得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// カテゴリの設定
+			st.setInt(1, dID);
+			try (
+					/// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				boolean Check = true;
+				if (rs.next()) {
+					Check = false;
+				}
+				return Check;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+		}
+	}
+	
+	public void ret(int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "UPDATE item SET renCID=null, renDate=null, retDate=null WHERE dID =?";
+		
+		Date Date = new Date();
+		long timeInMilliSeconds = Date.getTime();
+		java.sql.Date today = new java.sql.Date(timeInMilliSeconds);
+		
+		Date getretlineDate = getretlineDay(dID);
+		timeInMilliSeconds = getretlineDate.getTime();
+		java.sql.Date getretlineDay = new java.sql.Date(timeInMilliSeconds);
+		
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダ
+			st.setInt(1, dID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
+		}
+	}
+	
+	public void rethistory(int dID) throws DAOException {
+		// SQL文の作成
+		String sql = "UPDATE item SET retDate=? WHERE dID =?";
+		
+		Date Date = new Date();
+		long timeInMilliSeconds = Date.getTime();
+		java.sql.Date today = new java.sql.Date(timeInMilliSeconds);
+		
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PreparedStatementオブジェクトの取得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// プレースホルダ
+			st.setDate(1, today);
+			st.setInt(2, dID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("会員IDまたは資料IDを"+"/r"+ "正しく入力してください");
