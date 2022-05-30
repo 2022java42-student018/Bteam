@@ -27,6 +27,35 @@ public class CustomerdeleteDAO {
 		}
 	}
 	
+	public boolean cWdateCheck(int cID) throws DAOException {
+		// SQL文の作成
+		String sql = "SELECT cWdate FROM customer WHERE cID= ?";
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PaeparedStatementオブジェクトの所得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// カテゴリの設定
+			st.setInt(1, cID);
+			try (
+					/// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				boolean Check = false;
+				if (rs.next()) {
+					Check = true;
+				}
+				return Check;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("正しく入力してください");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDまたは資料IDを" + "/r" + "正しく入力してください");
+		}
+	}
+	
 	public List<CustomerBean> getcustomer(int cID)throws DAOException{
 		String sql = "SELECT * FROM customer WHERE cID = ?";
 		try(

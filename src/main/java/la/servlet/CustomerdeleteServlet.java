@@ -19,30 +19,38 @@ import la.dao.DAOException;
  */
 @WebServlet("/CustomerdeleteServlet")
 public class CustomerdeleteServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
-			//パラメータの解析
+			// パラメータの解析
 			String action = request.getParameter("action");
-			//モデルのDAOを生成
+			// モデルのDAOを生成
 			CustomerdeleteDAO dao = new CustomerdeleteDAO();
-			//貸出
-			if(action.equals("Confirm")) {
+			// 貸出
+			if (action.equals("Confirm")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
-				List<CustomerBean> list = dao.getcustomer(cID);
-				request.setAttribute("customer",list);
-				gotoPage(request,response,"/CustomerdeleteConfirm.jsp");
-			}else if(action.equals("delete")) {
+				if (dao.cWdateCheck(cID)) {
+					request.setAttribute("message", "退会済みの会員です");
+					gotoPage(request, response, "/errorTOP.jsp");
+				} else {
+					List<CustomerBean> list = dao.getcustomer(cID);
+					request.setAttribute("customer", list);
+					gotoPage(request, response, "/CustomerdeleteConfirm.jsp");
+				}
+			} else if (action.equals("delete")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				dao.Delete(cID);
+				request.setAttribute("message", "退会が完了しました");
+				gotoPage(request, response, "/errorTOP.jsp");
 			}
-		}catch(DAOException e) {
+		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "内部エラーが発生しました");
-			gotoPage(request,response,"/errorRental.jsp");
+			gotoPage(request, response, "/errorRental.jsp");
 		}
 	}
+
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher(page);
@@ -50,9 +58,11 @@ public class CustomerdeleteServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
