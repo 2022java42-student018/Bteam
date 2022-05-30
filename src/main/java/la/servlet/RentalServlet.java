@@ -27,7 +27,10 @@ public class RentalServlet extends HttpServlet {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = Integer.parseInt(request.getParameter("dID"));
 				
-				if(dao.IDCheck(dID)) {
+				if(dao.renIDCheck(dID)) {
+					request.setAttribute("message", "すでに資料が貸出または予約されています");
+					gotoPage(request,response,"/errorRental.jsp");
+				}else if(dao.resIDCheck(dID)) {
 					request.setAttribute("message", "すでに資料が貸出または予約されています");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else if(dao.fivebooks(cID)) {
@@ -42,10 +45,27 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("dName",dao.getdName(dID));
 					request.setAttribute("message","以上の資料を貸出しました");
 					request.setAttribute("retlineDay", dao.getretlineDay(dID));
-					gotoPage(request,response,"/RentalConfirmation.jsp");
+					gotoPage(request,response,"/Rental.jsp");
 				}
+				
+				
 			}else if(action.equals("ret")) {
-				if()
+				int dID = Integer.parseInt(request.getParameter("dID"));
+				
+				if(dao.retIDCheck(dID)) {
+					request.setAttribute("message", "この資料は貸出されていません");
+					gotoPage(request,response,"/errorRental.jsp");
+				}else {
+					dao.ret(dID);
+					dao.rethistory(dID);
+					request.setAttribute("dName",dao.getdName(dID));
+					request.setAttribute("message","以上の資料を返却しました");
+					
+					if(dao.resIDCheck(dID)) {
+						request.setAttribute("resmessage","予約有り");
+					}
+					gotoPage(request,response,"/Return.jsp");
+				}
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();
