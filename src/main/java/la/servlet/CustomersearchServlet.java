@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import la.bean.CustomerBean;
-import la.bean.DocumentInfoBean;
 import la.bean.historyBean;
+import la.bean.lend_docBean;
 import la.dao.CustomerDAO;
 import la.dao.DAOException;
 
@@ -33,40 +33,53 @@ public class CustomersearchServlet extends HttpServlet {
          
 		if(action.equals("eMailSearch")) {
 			
-			
+
 			 if (session != null) { // セッションオブジェクトなし
 			 session.removeAttribute("Customerdata");
 			 }
-           String eMail =request.getParameter("email");
-         List<CustomerBean> list= dao.emailSearch(eMail);	
-         request.setAttribute("customer", list);
-         gotoPage(request,response,"/showcustomer.jsp");//showcustomerﾍ
-         
-     
-         } else if (action.equals("renddoc")) {
+			 
+          String eMail =request.getParameter("email");
+        List<CustomerBean> list= dao.Emailcheck(eMail);
+        
+        if(list != null) {
+        	String eMail1 =request.getParameter("email");
+            List<CustomerBean> list1= dao.emailSearch(eMail1);	
+            request.setAttribute("customer", list1);
+            gotoPage(request,response,"/showcustomer.jsp");//showcustomerﾍ
+        
+        }else
+        	request.setAttribute("message", "Emailが間違っています");
+			gotoPage(request, response, "/customerError.jsp");
+
+        
+    
+			
+         }else if (action.equals("rend_doc")) {
         	 
              int cID = Integer.parseInt(request.getParameter("cID"));
-             List<DocumentInfoBean> list = dao.renddoc(cID);
+             List<lend_docBean> list = dao.rend_doc(cID);
               
              request.setAttribute("document",list);
 
              gotoPage(request, response, "/lend_doc.jsp");// lend_doc.jspﾍ
+           
            }
-		if (action.equals("history")){
+    
+         else if (action.equals("history_doc")){
 			
 			int cID = Integer.parseInt(request.getParameter("cID"));
 			
-			 List<historyBean> list = dao.history(cID);
+			 List<historyBean> list = dao.history_doc(cID);
 			
 			 request.setAttribute("history",list);
-			 gotoPage(request, response, "/history.jsp");
-		}
-    }catch(DAOException e) {
+			 gotoPage(request, response, "/history_doc.jsp");
+           }
+           }catch(DAOException e) {
 		e.printStackTrace();
 		request.setAttribute("message", "入力した内容に不備があります");
-		gotoPage(request,response,"/custmer_error.jsp");
+		gotoPage(request,response,"/customerError.jsp");
 	}
-  }
+    }  
    
   
     private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)

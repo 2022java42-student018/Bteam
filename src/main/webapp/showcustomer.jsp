@@ -16,7 +16,7 @@
 		</tr>
 		<c:forEach items="${customer}" var="cust">
 			<tr>
-				<td>${cust.cID }</td><td>${cust.cName }</td><td>${cust.cMail }</td><td>${cust.cBday }</td><td>${cust.cJdate }</td>
+				<td>${cust.cID }</td><td>${cust.cName }</td><td>${cust.cTell }</td><td>${cust.cMail }</td><td>${cust.cBday }</td><td>${cust.cJdate }</td>
 			</tr>
 		</c:forEach>
 	</table>

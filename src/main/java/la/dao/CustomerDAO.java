@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import la.bean.CustomerBean;
-import la.bean.DocumentInfoBean;
 import la.bean.historyBean;
-
+import la.bean.lend_docBean;
 public class CustomerDAO {
 	String url = "jdbc:postgresql:bteam2";
 	String user = "student";
@@ -26,7 +25,39 @@ public class CustomerDAO {
 		}
 	}
 
-	
+	public List<CustomerBean> Emailcheck( String email)throws DAOException{
+		String sql = "SELECT cMail FROM customer WHERE cMail =?";
+		
+		try(Connection con = DriverManager.getConnection(url,user,pass);
+			PreparedStatement st = con.prepareStatement(sql);){
+		
+			st.setString(1, email);
+			
+			try(
+				ResultSet rs = st.executeQuery();){
+				List<CustomerBean> list = new ArrayList<CustomerBean>();
+				while(rs.next()) {
+					int cID =rs.getInt("cID");
+					String cName =rs.getString("cName");
+					String cAddress =rs.getString("cAddress");
+					String cTell =rs.getString("cTell");
+					String cMail = rs.getString("cMail");
+					java.sql.Date cBday =rs.getDate("cBday");
+					java.sql.Date cJdate =rs.getDate("cJdate");
+					CustomerBean bean = new CustomerBean(cID,cName,cAddress,cTell,cMail,cBday,cJdate);
+					list.add(bean);
+				}
+				return list;
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("入力した内容に不備があります1");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります2");
+		}
+	}
 	public List <CustomerBean> emailSearch(String eMail )throws DAOException{
 		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
 		
@@ -42,7 +73,7 @@ public class CustomerDAO {
 					int cID =rs.getInt("cID");
 					String cName =rs.getString("cName");
 					String cAddress =rs.getString("cAddress");
-					int cTell =rs.getInt("cTell");
+					String cTell =rs.getString("cTell");
 					String cMail = rs.getString("cMail");
 					java.sql.Date cBday =rs.getDate("cBday");
 					java.sql.Date cJdate =rs.getDate("cJdate");
@@ -59,8 +90,10 @@ public class CustomerDAO {
 			throw new DAOException("入力した内容に不備があります");
 		}
 	}
+	
+	
 
-	public List<DocumentInfoBean> renddoc(int cID) throws DAOException {
+	public List<lend_docBean> rend_doc(int cID) throws DAOException {
 		String sql = "SELECT dID,dName,pName,aName,renCID,resCID FROM item WHERE renCID =?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
@@ -70,15 +103,15 @@ public class CustomerDAO {
 
 			try (
 					ResultSet rs = st.executeQuery();) {
-				List<DocumentInfoBean> list = new ArrayList<DocumentInfoBean>();
+				List<lend_docBean> list = new ArrayList<lend_docBean>();
 				while (rs.next()) {
 					int dID = rs.getInt("dID");
 					String dname = rs.getString("dName");// タイトル
 					String pName = rs.getString("pName");// 出版社
 					String aName = rs.getString("aName");// 著者
-					int renCID = rs.getInt("renCID ");
-					int resCID = rs.getInt("resCID ");
-					DocumentInfoBean bean = new DocumentInfoBean();
+					java.sql.Date  renDate = rs.getDate("renDate ");
+					java.sql.Date  retDate = rs.getDate("retDate ");
+					lend_docBean bean = new lend_docBean();
 					list.add(bean);
 				}
 				return list;
@@ -92,7 +125,7 @@ public class CustomerDAO {
 		}
 	
 	}
-	public List<historyBean> history(int cID) throws DAOException {
+	public List<historyBean> history_doc(int cID) throws DAOException {
 		String sql = "SELECT cID,dName,renDate,retDate,FROM history WHERE cID =?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -105,9 +138,9 @@ public class CustomerDAO {
 				while (rs.next()) {
 					int cID1 = rs.getInt("cID");
 					String dName = rs.getString("dName");// タイトル
-					int renCID = rs.getInt("renCID ");
-					int retCID = rs.getInt("retCID ");
-					historyBean bean = new historyBean(cID1,dName ,renCID,retCID);
+					java.sql.Date  renDate = rs.getDate("renDate ");
+					java.sql.Date  retDate = rs.getDate("retDate ");
+					historyBean bean = new historyBean(cID1,dName ,renDate,retDate);
 					list.add(bean);
 				}
 				return list;

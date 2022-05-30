@@ -14,7 +14,7 @@
 		</tr>
 		<c:forEach items="${document}" var="item">
 			<tr>
-				<td>${item.dID }</td><td>${item.cName }</td><td>${item.cMail }</td><td>${item.cBday }</td><td>${item.cJdate }</td>
+				<td>${item.dID }</td><td>${item.dName }</td><td>${item.pName }</td><td>${item.aName }</td><td>${item.renCID }</td><td>${item.retCID }</td>
 			</tr>
 		</c:forEach>
 	</table>
