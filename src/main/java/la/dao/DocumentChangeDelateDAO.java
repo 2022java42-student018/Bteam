@@ -22,7 +22,7 @@ public class DocumentChangeDelateDAO {
 		}
 		
 	public int Delate(int leID)throws DAOException{
-		String sql = "DELETE FROM bitem WHERE dID = ?";
+		String sql = "DELETE FROM item WHERE dID = ?";
 		try(
 		   Connection con = DriverManager.getConnection(url, user,pass);
 			PreparedStatement st = con.prepareStatement(sql);){
@@ -37,7 +37,7 @@ public class DocumentChangeDelateDAO {
 	}
 	
 	public int PreDelate( int leID)throws DAOException{
-		String sql = "SELECT * FROM bitem WHERE dID =?";
+		String sql = "SELECT * FROM item WHERE dID =?";
 		try(Connection con = DriverManager.getConnection(url,user,pass);
 			PreparedStatement st = con.prepareStatement(sql);){
 			st.setInt(1, leID);
@@ -61,7 +61,7 @@ public class DocumentChangeDelateDAO {
 		}
 	
 	public int Change( int ledID,int leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)throws DAOException {
-		String spl ="UPDATE bitem SET isbn = ?, cCode = ? , dName = ? , aName = ? , pName = ? , pDate = ? WHERE dID = ? ";
+		String spl ="UPDATE item SET isbn = ?, cCode = ? , dName = ? , aName = ? , pName = ? , pDate = ? WHERE dID = ? ";
 		try(Connection con = DriverManager.getConnection(url, user, pass);
 			PreparedStatement st = con.prepareStatement(spl);){
 			st.setInt(1, leisbn);

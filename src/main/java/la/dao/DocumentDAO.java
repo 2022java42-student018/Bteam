@@ -27,7 +27,7 @@ public class DocumentDAO {
 
 	public List<DocumentBean> dIDSearchDESC(int ledID) throws DAOException {
 
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE dID LIKE '%?%' ORDER BY dID DESC";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dID LIKE '%?%' ORDER BY dID DESC";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, ledID);
@@ -59,7 +59,7 @@ public class DocumentDAO {
 	}
 
 	public List<DocumentBean> dIDSearch(int ledID) throws DAOException {
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE dID = ? ORDER BY dID";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dID = ? ORDER BY dID";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
@@ -92,7 +92,7 @@ public class DocumentDAO {
 	}
 
 	public List<DocumentBean> dNameSearch(String ledName) throws DAOException {
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE dName LIKE ? ORDER BY dID";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dID";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, ledName+"%");
@@ -125,7 +125,7 @@ public class DocumentDAO {
 	}
 	
 	public List<DocumentBean> dNameSearchASC(String ledName) throws DAOException {
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE dName LIKE ? ORDER BY dName";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dName";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, ledName+"%");
@@ -156,7 +156,7 @@ public class DocumentDAO {
 		}
 	}
 	public List<DocumentBean> dNameSearchDESC(String ses) throws DAOException {
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE dName LIKE ? ORDER BY dName DESC";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dName DESC";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, ses+"%");
@@ -188,7 +188,7 @@ public class DocumentDAO {
 	}
 
 	public List<DocumentBean> aNameSearch(String leaName) throws DAOException {
-		String sql = "SELECT dID,dName,aName,pName,renCID FROM bitem WHERE aName LIKE ? ORDER BY dID";
+		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY dID";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, leaName + "%");
@@ -220,7 +220,7 @@ public class DocumentDAO {
 	}
 	
 	public List<DocumentBean> aNameSearchASC(String leaName) throws DAOException {
-		String sql = "SELECT   dID,dName,aName,pName,renCID FROM bitem WHERE aName LIKE ? ORDER BY aName ";
+		String sql = "SELECT   dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY aName ";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, leaName + "%");
@@ -252,7 +252,7 @@ public class DocumentDAO {
 	}
 	
 	public List<DocumentBean> aNameSearchDESC(String leaName) throws DAOException {
-		String sql = "SELECT   dID,dName,aName,pName,renCID FROM bitem WHERE aName LIKE ? ORDER BY aName DESC";
+		String sql = "SELECT   dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY aName DESC";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, leaName + "%");

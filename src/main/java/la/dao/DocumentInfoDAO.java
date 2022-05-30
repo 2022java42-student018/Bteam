@@ -26,7 +26,7 @@ public class DocumentInfoDAO {
 	}
 	
 	public DocumentInfoBean ShowAllInfo(int leID)throws DAOException{
-		String sql ="SELECT dID, isbn, cCode, dName,  aName, pName, pDate, aDate, renCID, resCID FROM bitem WHERE dID = ?";
+		String sql ="SELECT dID, isbn, cCode, dName,  aName, pName, pDate, aDate, renCID, resCID FROM item WHERE dID = ?";
 		try(Connection con = DriverManager.getConnection(url,user,pass);
 			PreparedStatement st = con.prepareStatement(sql);){
 			st.setInt(1,leID);
