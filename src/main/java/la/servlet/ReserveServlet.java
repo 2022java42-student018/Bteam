@@ -41,7 +41,6 @@ public class ReserveServlet extends HttpServlet {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				int dID = (int) session.getAttribute("ManagementdID");
 				
-				
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
