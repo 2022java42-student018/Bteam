@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DocumentChangeDelateDAO {
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
     

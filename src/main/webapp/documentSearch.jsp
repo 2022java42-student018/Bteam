@@ -13,7 +13,7 @@
 
 <form action ="/Bteam/DocumentServlet" method ="post" align ="center">
  <h2>資料ID:
-<input type ="text" name="dID" size="20" pattern="[0-9A-Za-z]*" title="英数字で入力してください" required>
+<input type ="text" name="dID" size="20" pattern="^[0-9]+$" title="数字で入力してください" required>
 <input type ="submit" value="検索">
 <input type ="hidden" name="action" value="dIDSearch">
 </h2>

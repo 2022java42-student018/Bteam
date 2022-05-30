@@ -1,4 +1,4 @@
-package la.dao;
+		package la.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import la.bean.DocumentBean;
 
 public class DocumentDAO {
 
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
     

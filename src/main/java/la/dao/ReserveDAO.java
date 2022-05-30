@@ -13,7 +13,7 @@ import la.bean.ReserveBean;
 
 public class ReserveDAO {
 
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
 

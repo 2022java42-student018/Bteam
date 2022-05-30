@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import la.bean.DocumentInfoBean;
 
 public class DocumentAddDAO {
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:Bteam";
 	String user = "student";
 	String pass = "himitu";
 

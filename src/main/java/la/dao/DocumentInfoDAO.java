@@ -11,7 +11,7 @@ import la.bean.DocumentInfoBean;
 
 
 public class DocumentInfoDAO {
-	String url = "jdbc:postgresql:sample";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
     
