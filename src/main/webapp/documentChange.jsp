@@ -21,7 +21,7 @@ margin-right : 20px;
 
 <tr>
 <td>${ change.isbn}</td><td>${change.cCode }</td><td>${change.dName }</td><td>${change.aName }</td><td>${change.pName }</td><td>${change.pDate }</td>
-
+</tr>
 </table>
 
 <br><br>
@@ -29,7 +29,7 @@ margin-right : 20px;
 <table border ="0" style ="text-align : center">
 <tr>
 <td>
-<form action = "/Bteam/documentSearch.jsp">
+<form action = "/Bteam/documentSearch.jsp" method ="post">
 <input type ="submit" value ="検索TOPへ">
 </form>
 </td>

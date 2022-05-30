@@ -60,7 +60,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 					request.setAttribute("message", "選択したデータは既に削除されています");
 					gotoPage(request, response, "/documentSearchError.jsp");
 				} else {
-				int isbn =Integer.parseInt(request.getParameter("isbn"));
+				long isbn =Long.parseLong(request.getParameter("isbn"));
 				int cCode = Integer.parseInt(request.getParameter("cCode"));
 				String dName = request.getParameter("dName");
 				String aName = request.getParameter("aName");

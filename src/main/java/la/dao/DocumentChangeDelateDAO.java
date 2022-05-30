@@ -60,11 +60,11 @@ public class DocumentChangeDelateDAO {
 			
 		}
 	
-	public int Change( int ledID,int leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)throws DAOException {
+	public int Change( int ledID,long leisbn, int lecCode, String ledName, String leaName, String lepName, Date lepDate)throws DAOException {
 		String spl ="UPDATE item SET isbn = ?, cCode = ? , dName = ? , aName = ? , pName = ? , pDate = ? WHERE dID = ? ";
 		try(Connection con = DriverManager.getConnection(url, user, pass);
 			PreparedStatement st = con.prepareStatement(spl);){
-			st.setInt(1, leisbn);
+			st.setLong(1, leisbn);
 			st.setInt(2, lecCode);
 			st.setString(3, ledName);
 			st.setString(4, leaName);

@@ -30,42 +30,46 @@ margin-right : 20px;
 
 <p>
 <lebel>
+会員ID:${CustomerInfo.cID}
+</lebel>
+<p>
+<lebel>
 氏名:
 </lebel>
-<input type = "text" name = "cName" size = "40" pattern = "\S|\S.*?\S"  required>
+<input type = "text" name = "cName" value ="${CustomerInfo.cName}"size = "40" pattern = "\S|\S.*?\S"  required>
 </p>
 
 <p>
 <lebel>
 住所:
 </lebel>
-<input type = "text" name ="cAddress" size = "40" pattern = "\S|\S.*?\S"  required>
+<input type = "text" name ="cAddress" value ="${CustomerInfo.cAddress }"size = "40" pattern = "\S|\S.*?\S"  required>
 </p>
 
 <p>
 <lebel>
 電話番号:
 </lebel>
-<input type = "text" name = "cTell" size ="40" pattern = "\d{2,4}-\d{2,4}-\d{3,4}" title="形式を正して数字で入力してください(例：010-1111-1221)" required>
+<input type = "text" name = "cTell" value ="${CustomerInfo.cTell }" size ="40" pattern = "\d{2,4}-\d{2,4}-\d{3,4}" title="形式を正して数字で入力してください(例：010-1111-1221)" required>
 </p>
 
 <p>
 <lebel>
 Eメール:
 </lebel>
-<input type = "email" name="cMail" size ="40" pattern= "^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$" title="英数字で入力してください" required>
+<input type = "email" name="cMail" value ="${CustomerInfo.cMail }" size ="40" pattern= "^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$" title="英数字で入力してください" required>
 </p>
 
 <p>
 <lebel>
 生年月日:
 </lebel>
-<input type = "text" name ="cBday"  size="40" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください(例：1999-01-11)" required>
+<input type = "text" name ="cBday"  value ="${CustomerInfo.cBday }"size="40" pattern ="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"title="YYYY-MM-DDの形式で入力してください(例：1999-01-11)" required>
 </p>
 
 <br>
-<input type = "submit" value ="登録" size ="56">
-<input type ="hidden" name="action" value ="add">
+<input type = "submit" value ="変更" size ="56">
+<input type ="hidden" name="action" value ="cChange">
 </form>
 </div>
 <br>
