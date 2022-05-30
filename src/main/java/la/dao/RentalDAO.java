@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class RentalDAO {
 	// URL、ユーザ名、パスワードの準備
-	private String url = "jdbc:postgresql:bteam";
+	private String url = "jdbc:postgresql:Bteam";
 	private String user = "student";
 	private String pass = "himitu";
 

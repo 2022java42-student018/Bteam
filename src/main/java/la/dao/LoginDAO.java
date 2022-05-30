@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDAO {
-	private String url = "";
-	private String user = "";
-	private String pass = "";
+	private String url = "jdbc:postgresql:Bteam";
+	private String user = "student";
+	private String pass = "himitu";
 
 	public LoginDAO() throws DAOException {
 		try {
