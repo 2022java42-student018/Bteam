@@ -25,9 +25,41 @@ public class ReserveDAO {
 			throw new DAOException("ドライバの登録に失敗しました");
 		}
 	}
+	
+	public boolean reservestart(int dID) throws DAOException {
+
+		// SQL文の作成
+		String sql = "SELECT resCID FROM item WHERE dID= ? ";
+		boolean Confirmation;
+
+		try (// データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				// PaeparedStatementオブジェクトの所得
+				PreparedStatement st = con.prepareStatement(sql);) {
+			// カテゴリの設定
+			st.setInt(1, dID);
+
+			try (// SQLの実行
+					ResultSet rs = st.executeQuery();) {
+				if (rs.next()) {
+					Confirmation = false;
+				} else {
+					Confirmation = true;
+				}
+				return Confirmation;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("会員IDが間違っています。");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDが間違っています。");
+		}
+	}
 
 	public List<ReserveBean> name_serch(int user_id) throws DAOException {
-		String sql = "SELECT * FROM customer WEHRE customer_id = ?";
+		String sql = "SELECT * FROM customer WEHRE cID = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, user_id);
@@ -82,38 +114,4 @@ public class ReserveDAO {
 	throw new DAOException("会員IDが間違っています。");
 }
 }
-	
-	
-
-	public boolean Confirmation(int dID) throws DAOException {
-
-		// SQL文の作成
-		String sql = "SELECT resCID FROM item WHERE dID= ? ";
-		boolean Confirmation;
-
-		try (// データベースへの接続
-				Connection con = DriverManager.getConnection(url, user, pass);
-				// PaeparedStatementオブジェクトの所得
-				PreparedStatement st = con.prepareStatement(sql);) {
-			// カテゴリの設定
-			st.setInt(1, dID);
-
-			try (// SQLの実行
-					ResultSet rs = st.executeQuery();) {
-				if (rs.next()) {
-					Confirmation = false;
-				} else {
-					Confirmation = true;
-				}
-				return Confirmation;
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DAOException("会員IDが間違っています。");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("会員IDが間違っています。");
-		}
-	}
 }
