@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<div style="text-align: center">
+	<div style="text-align: center">	
 		<h1>会員名:${cName}</h1>
 
 
@@ -27,16 +27,17 @@
 
 			<tr>
 				<td>${document.dID}</td>
+
 				<td>${document.dName}</td>
 				<td>${document.cCode}</td>
 				<td>${document.aName}</td>
 				<td>${document.pName}</td>
-				<td>${document.aDate}</td>
+				<td>${document.pDate}</td>
 			</tr>
 		</table>
 		<form action="/Bteam/ReserveServlet" method="post">
-			<input type="hidden" name="cID" value="${cID}">
 			<input type="hidden" name="action" value="decision">
+			<input type="hidden" name="cID" value="${cID}">
 			<input type="submit" value="予約">
 		</form>
 	</div>

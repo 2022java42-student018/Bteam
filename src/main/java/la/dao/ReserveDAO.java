@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import la.bean.ReserveBean;
 
@@ -86,25 +84,40 @@ public class ReserveDAO {
 			throw new DAOException("会員IDまたは資料IDを" + "/r" + "正しく入力してください");
 		}
 	}
+	
+	public int Document_serch1(int resCID,int dID)throws DAOException {
+		String sql = "UPDATE Item SET resCID= ? WHERE dID=?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+		st.setInt(1,resCID);
+		st.setInt(2,dID);
+		
+		int rows = st.executeUpdate();
+		return rows;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("会員IDが間違っています。");
+		}
+	}
 
-	public List<ReserveBean> Document_serch(int dID) throws DAOException {
+	public ReserveBean Document_serch(int dID) throws DAOException {
 		String sql = "SELECT * FROM Item WHERE dID = ?";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 			st.setInt(1, dID);
 
 			try (ResultSet rs = st.executeQuery();) {
-				List<ReserveBean> list = new ArrayList<ReserveBean>();
+				ReserveBean bean =null;
 				while (rs.next()) {
 					String dName = rs.getString("dName");
 					int cCode = rs.getInt("cCode");
 					String aName = rs.getString("aName");
 					String pName = rs.getString("pName");
 					Date pDate = rs.getDate("pDate");
-					ReserveBean bean = new ReserveBean(dID, dName, cCode, aName, pName, pDate);
-					list.add(bean);
+					int rescID = rs.getInt("rescid");
+					 bean = new ReserveBean(dID, dName, cCode, aName, pName, pDate, rescID);
 				}
-				return list;
+				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("会員IDが間違っています。");
