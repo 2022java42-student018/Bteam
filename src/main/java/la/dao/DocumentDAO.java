@@ -95,7 +95,7 @@ public class DocumentDAO {
 		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dID";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, ledName+"%");
+			st.setString(1,"%"+ ledName+"%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
@@ -128,7 +128,7 @@ public class DocumentDAO {
 		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dName";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, ledName+"%");
+			st.setString(1, "%"+ledName+"%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
@@ -159,7 +159,7 @@ public class DocumentDAO {
 		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE dName LIKE ? ORDER BY dName DESC";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, ses+"%");
+			st.setString(1,"%"+ ses+"%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
@@ -191,7 +191,7 @@ public class DocumentDAO {
 		String sql = "SELECT dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY dID";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, leaName + "%");
+			st.setString(1, "%"+leaName + "%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
@@ -223,7 +223,7 @@ public class DocumentDAO {
 		String sql = "SELECT   dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY aName ";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, leaName + "%");
+			st.setString(1,"%"+ leaName + "%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
@@ -255,7 +255,7 @@ public class DocumentDAO {
 		String sql = "SELECT   dID,dName,aName,pName,renCID FROM item WHERE aName LIKE ? ORDER BY aName DESC";
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
-			st.setString(1, leaName + "%");
+			st.setString(1,"%"+ leaName + "%");
 			try (ResultSet rs = st.executeQuery();) {
 				List<DocumentBean> list = new ArrayList<DocumentBean>();
 				while (rs.next()) {
