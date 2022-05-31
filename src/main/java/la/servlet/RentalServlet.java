@@ -40,8 +40,9 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("message", "資料の返却期限が過ぎています\r\n"+ "資料返却を行ってください");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else {
+					String dName = dao.getdName(dID);
 					dao.rental(cID,dID);
-					dao.rental(cID, dID);
+					dao.rentalhistory(cID, dName);
 					request.setAttribute("dName",dao.getdName(dID));
 					request.setAttribute("message","以上の資料を貸出しました");
 					request.setAttribute("retlineDay", dao.getretlineDay(dID));

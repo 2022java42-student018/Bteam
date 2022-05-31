@@ -118,7 +118,7 @@ public class RentalDAO {
 
 	public boolean overrent(int cID) throws DAOException {
 		// SQL文の作成
-		String sql = "SELECT retDate FROM item WHERE renCID =?";
+		String sql = "SELECT retDate FROM item WHERE renCID =?, retDate<=CURRENT_DATE";
 
 		try (// データベースへの接続
 				Connection con = DriverManager.getConnection(url, user, pass);
@@ -128,20 +128,10 @@ public class RentalDAO {
 			st.setInt(1, cID);
 			try (// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				boolean Check = true;
-				Date retDate = rs.getDate("retDate");
-				Calendar retCalendar = Calendar.getInstance();
-				Calendar today = Calendar.getInstance();
-
-				retCalendar.setTime(retDate);
-
-				int year = retCalendar.get(Calendar.YEAR);
-				int month = retCalendar.get(Calendar.MONTH);
-				int date = retCalendar.get(Calendar.DATE);
-
-				retCalendar.set(year, month, date, 0, 0, 0);
-
-				Check = retCalendar.before(today);
+				boolean Check = false;
+				if (rs.next()) {
+					Check = true;
+				}
 				return Check;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -263,9 +253,9 @@ public class RentalDAO {
 		}
 	}
 
-	public int rentalhistory(int cID, int dID) throws DAOException {
+	public int rentalhistory(int cID, String dName) throws DAOException {
 		// SQL文の作成
-		String sql = "INSERT INTO history VALUES CID=?, dID=? ,renDate=?";
+		String sql = "INSERT INTO history VALUES CID=?, dName=? ,renDate=?";
 
 		Date Date = new Date();
 		long timeInMilliSeconds = Date.getTime();
@@ -277,7 +267,7 @@ public class RentalDAO {
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// プレースホルダ
 			st.setInt(1, cID);
-			st.setInt(2, dID);
+			st.setString(2, dName);
 			st.setDate(3, today);
 			int rows = st.executeUpdate();
 			return rows;
