@@ -73,11 +73,12 @@ public class DocumentAddDAO {
 		}
 	}
 
-	public int CountDocument(String ledName) throws DAOException {
-		String sql3 = "SELECT COUNT (*) AS cnt FROM item where dName =?" ;
+	public int CountDocument(String ledName,String leaName) throws DAOException {
+		String sql3 = "SELECT COUNT (*) AS cnt FROM item where dName =? AND aName = ?" ;
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql3);) {
 			st.setString(1, ledName);
+			st.setString(2, leaName);
 			try (ResultSet rs = st.executeQuery();) {
 				int count = 0;
 				while (rs.next()) {

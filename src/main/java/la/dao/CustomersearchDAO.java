@@ -26,6 +26,36 @@ public class CustomersearchDAO {
 		}
 	}
 
+	public CustomerBean emailCheck(String eMail) throws DAOException {
+		String sql = "SELECT * FROM customer WHERE cMail =?";
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+
+			st.setString(1, eMail);
+
+			try (ResultSet rs = st.executeQuery();) {
+				CustomerBean bean = null;
+				while (rs.next()) {
+					int cID = rs.getInt("cID");
+					String cName = rs.getString("cName");
+					String cAddress = rs.getString("cAddress");
+					String cTell = rs.getString("cTell");
+					String cMail = rs.getString("cMail");
+					java.sql.Date cBday = rs.getDate("cBday");
+					java.sql.Date cJdate = rs.getDate("cJdate");
+					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate, null);
+				}
+				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("データセットエラー");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります");
+		}
+	}
+
 	public CustomerBean emailSearch(String eMail) throws DAOException {
 		String sql = "SELECT cID,cName,cAddress,cTell,cMail,cBday,cJdate FROM customer WHERE cMail =?";
 
@@ -44,9 +74,33 @@ public class CustomersearchDAO {
 					String cMail = rs.getString("cMail");
 					java.sql.Date cBday = rs.getDate("cBday");
 					java.sql.Date cJdate = rs.getDate("cJdate");
-					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday,cJdate, null);
+					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate, null);
 				}
 				return bean;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("データセットエラー");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります");
+		}
+	}
+
+	public int emailerr(String eMail) throws DAOException {
+		String sql = "SELECT * FROM customer WHERE cMail =?";
+
+		try (Connection con = DriverManager.getConnection(url, user, pass);
+				PreparedStatement st = con.prepareStatement(sql);) {
+
+			st.setString(1, eMail);
+
+			try (ResultSet rs = st.executeQuery();) {
+				int num = 0;
+				while (rs.next()) {
+					num = num + 1;
+				}
+				return num;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("データセットエラー");
@@ -74,7 +128,7 @@ public class CustomersearchDAO {
 					String aName = rs.getString("aName");// 著者
 					java.sql.Date renDate = rs.getDate("renDate ");
 					java.sql.Date retDate = rs.getDate("retDate ");
-					lend_docBean bean = new lend_docBean(dID,dName,pName,aName,renDate,retDate);
+					lend_docBean bean = new lend_docBean(dID, dName, pName, aName, renDate, retDate);
 					list.add(bean);
 				}
 				return list;
@@ -106,8 +160,7 @@ public class CustomersearchDAO {
 					list.add(bean);
 				}
 				return list;
-				
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new DAOException("データセットエラー");
@@ -117,7 +170,7 @@ public class CustomersearchDAO {
 			throw new DAOException("データベースエラー");
 		}
 	}
-	
+
 	public CustomerBean cIDSearch(int cID) throws DAOException {
 		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
 
@@ -135,7 +188,7 @@ public class CustomersearchDAO {
 					String cMail = rs.getString("cMail");
 					java.sql.Date cBday = rs.getDate("cBday");
 					java.sql.Date cJdate = rs.getDate("cJdate");
-					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday,cJdate, null);
+					bean = new CustomerBean(cID, cName, cAddress, cTell, cMail, cBday, cJdate, null);
 				}
 				return bean;
 			} catch (SQLException e) {

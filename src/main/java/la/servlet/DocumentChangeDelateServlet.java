@@ -32,7 +32,7 @@ public class DocumentChangeDelateServlet extends HttpServlet {
 				int dID = (Integer)session.getAttribute("ManagementdID");
                 int list=dao.PreDelate(dID);
                 
-				if (list == 0) {
+				if (list != dID) {
 					request.setAttribute("message", "選択したデータは既に削除されています");
 					gotoPage(request, response, "/documentSearchError.jsp");
 				} else {
