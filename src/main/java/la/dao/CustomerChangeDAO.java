@@ -73,4 +73,25 @@ public class CustomerChangeDAO {
 	}
 	
 	
+	public int Kakunin(int lecID)throws DAOException{
+		String sql = "SELECT * FROM customer WHERE cID = ?";
+		try(
+			Connection con = DriverManager.getConnection(url,user,pass);
+			PreparedStatement st = con.prepareStatement(sql);){
+			st.setInt(1, lecID);
+			try(ResultSet rs = st.executeQuery();){
+				int cID =0;
+				while(rs.next()) {
+					cID = rs.getInt("cID");
+				}
+				return cID;
+			}catch(SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("入力した内容に不備があります");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります");
+		}
+	}
 }
