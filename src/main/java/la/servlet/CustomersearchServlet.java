@@ -50,9 +50,6 @@ public class CustomersearchServlet extends HttpServlet {
 				gotoPage(request, response, "history_doc.jsp");
 
 			} else if (action.equals("backinfo")) {
-				int cID = (int)session.getAttribute("cID");
-				CustomerBean bean = dao.cIDSearch(cID);
-				request.setAttribute("customer", bean);
 				gotoPage(request, response, "/Customerinfo.jsp");
 
 			} else if (action.equals("gotoTOP")) {

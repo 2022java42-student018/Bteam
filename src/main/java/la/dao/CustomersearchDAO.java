@@ -27,7 +27,7 @@ public class CustomersearchDAO {
 	}
 
 	public CustomerBean emailSearch(String eMail) throws DAOException {
-		String sql = "SELECT cID,cname,caddress,cTell,cmail,cbday,cJdate FROM customer WHERE cmail =?";
+		String sql = "SELECT cID,cName,cAddress,cTell,cMail,cBday,cJdate FROM customer WHERE cMail =?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {

@@ -38,7 +38,7 @@
 					href="/Bteam/CustomersearchServlet?action=history&cID=${customer.cID}">貸出履歴</a></td>
 			</tr>
 		</table>
-		<form action="/bteam/CustomersearchServlet" method="post">
+		<form action="/Bteam/CustomersearchServlet" method="post">
 			<input type="hidden" name="action" value="gotoTOP">
 			<input type="submit"value="TOPへ">
 		</form>
