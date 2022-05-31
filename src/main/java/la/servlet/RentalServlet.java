@@ -58,7 +58,8 @@ public class RentalServlet extends HttpServlet {
 					gotoPage(request,response,"/errorRental.jsp");
 				}else {
 					dao.ret(dID);
-					dao.rethistory(dID);
+					String dName = dao.getdName(dID);
+					dao.rethistory(dName);
 					request.setAttribute("dName",dao.getdName(dID));
 					request.setAttribute("message","以上の資料を返却しました");
 					

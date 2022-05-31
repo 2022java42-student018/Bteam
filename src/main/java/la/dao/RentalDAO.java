@@ -340,9 +340,9 @@ public class RentalDAO {
 		}
 	}
 
-	public int rethistory(int dID) throws DAOException {
+	public int rethistory(String dName) throws DAOException {
 		// SQL文の作成
-		String sql = "UPDATE history SET retDate=? WHERE dID =?";
+		String sql = "UPDATE history SET retDate=? WHERE dName =?";
 
 		Date Date = new Date();
 		long timeInMilliSeconds = Date.getTime();
@@ -354,7 +354,7 @@ public class RentalDAO {
 				PreparedStatement st = con.prepareStatement(sql);) {
 			// プレースホルダ
 			st.setDate(1, today);
-			st.setInt(2, dID);
+			st.setString(2, dName);
 			int rows = st.executeUpdate();
 			return rows;
 		} catch (SQLException e) {
