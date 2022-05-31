@@ -50,11 +50,11 @@ public class DocumentChangeDelateDAO {
 				
 			}catch(SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります1");
+				throw new DAOException("入力した内容に不備があります");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります2");
+			throw new DAOException("入力した内容に不備があります");
 		}
 				
 			

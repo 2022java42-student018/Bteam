@@ -1,6 +1,7 @@
 package la.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,11 +29,17 @@ public class CustomerdeleteServlet extends HttpServlet {
 			CustomerdeleteDAO dao = new CustomerdeleteDAO();
 			// 貸出
 			int cID = Integer.parseInt(request.getParameter("cID"));
+			int kakunin = dao.Kakunin(cID);
 			
 			if (action.equals("Confirm")) {
+				if(cID != kakunin) {
+					request.setAttribute("message", "存在しない会員です");
+					gotoPage(request,response,"/errorTOP.jsp");
+				}else {
+					
 				
-				int num = dao.cWdateCheck(cID);
-				if (num != 0) {
+				Date num = dao.cWdateCheck(cID);
+				if (num != null) {
 					request.setAttribute("message", "退会済みの会員です");
 					gotoPage(request, response, "/errorTOP.jsp");
 				} else {
@@ -40,6 +47,7 @@ public class CustomerdeleteServlet extends HttpServlet {
 					CustomerBean list = dao.getcustomer(cID);
 					request.setAttribute("customer", list);
 					gotoPage(request, response, "/CustomerdeleteConfirm.jsp");
+				}
 				}
 			} else if (action.equals("delete")) {
 				System.out.println(cID);
@@ -50,7 +58,7 @@ public class CustomerdeleteServlet extends HttpServlet {
 		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "内部エラーが発生しました");
-			gotoPage(request, response, "/errorRental.jsp");
+			gotoPage(request, response, "/errorTOP.jsp");
 		}
 	}
 

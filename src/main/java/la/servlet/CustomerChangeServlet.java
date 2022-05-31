@@ -29,8 +29,9 @@ public class CustomerChangeServlet extends HttpServlet {
 			if(action.equals("cIDcheck")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				session.setAttribute("ManagementcID", cID);
-				if(cID == 0) {
-					request.setAttribute("message", "エラーが発生しました");
+				int kakunin = dao.Kakunin(cID);
+				if(cID != kakunin) {
+					request.setAttribute("message", "存在しない会員IDです");
 					gotoPage(request, response, "/customerChangeError.jsp");
 				}else {
 					CustomerBean list = dao.ShowCustomerInfo(cID);
@@ -40,8 +41,9 @@ public class CustomerChangeServlet extends HttpServlet {
 				
 			}else if (action.equals("cChange")) {
 				int cID = (Integer)session.getAttribute("ManagementcID");
-				if(cID == 0) {
-					request.setAttribute("message", "エラーが発生しました");
+				int kakunin = dao.Kakunin(cID);
+				if(cID != kakunin) {
+					request.setAttribute("message", "存在しない会員です");
 					gotoPage(request,response,"/customerChangeError.jsp");
 				}else {
 					String cName = request.getParameter("cName");

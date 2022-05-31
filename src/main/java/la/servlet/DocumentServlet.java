@@ -53,7 +53,7 @@ public class DocumentServlet extends HttpServlet {
 					session.setAttribute("items", list);
 					gotoPage(request, response, "/showAllDocument.jsp");
 				} else if (dName.length() == 0) {
-					request.setAttribute("message", "正しく操作してください");
+					request.setAttribute("message", "入力した内容に不備があります");
 					gotoPage(request, response, "/documentSearchError.jsp");
 				}
 
@@ -67,7 +67,7 @@ public class DocumentServlet extends HttpServlet {
 					session.setAttribute("items", list);
 					gotoPage(request, response, "/showAllDocument.jsp");
 				} else if (aName.length() == 0) {
-					request.setAttribute("message", "正しく操作してください");
+					request.setAttribute("message", "入力した内容に不備があります");
 					gotoPage(request, response, "/documentSearchError.jsp");
 				}
 			} else if (action.equals("DscSort")) {
@@ -101,14 +101,14 @@ public class DocumentServlet extends HttpServlet {
 					gotoPage(request, response, "/showAllDocument.jsp");
 				}
 			} else {
-				request.setAttribute("message", "正しく操作してください");
+				request.setAttribute("message", "入力した内容に不備があります");
 				gotoPage(request, response, "/documentSearchError.jsp");
 
 			}
 
 		} catch (DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "入力した内容に不備があります");
+			request.setAttribute("message", "正しく操作してください");
 			gotoPage(request, response, "/documentSearchError.jsp");
 		}
 

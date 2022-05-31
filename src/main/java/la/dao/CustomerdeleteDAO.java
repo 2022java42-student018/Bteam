@@ -25,7 +25,7 @@ public class CustomerdeleteDAO {
 		}
 	}
 
-	public int cWdateCheck(int cID) throws DAOException {
+	public Date cWdateCheck(int cID) throws DAOException {
 		// SQL文の作成
 		String sql = "SELECT cWdate FROM customer WHERE cID= ?";
 
@@ -38,9 +38,9 @@ public class CustomerdeleteDAO {
 			try (
 					/// SQLの実行
 					ResultSet rs = st.executeQuery();) {
-				int num = 0;
+				java.sql.Date num = null;
 				if (rs.next()) {
-					 num = rs.getInt("cWdate");
+					 num = rs.getDate("cWdate");
 					
 				}
 				return num;
@@ -103,6 +103,28 @@ public class CustomerdeleteDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("正しく操作してください");
+		}
+	}
+	
+	public int Kakunin(int lecID)throws DAOException{
+		String sql = "SELECT * FROM customer WHERE cID = ?";
+		try(
+			Connection con = DriverManager.getConnection(url,user,pass);
+			PreparedStatement st = con.prepareStatement(sql);){
+			st.setInt(1, lecID);
+			try(ResultSet rs = st.executeQuery();){
+				int cID =0;
+				while(rs.next()) {
+					cID = rs.getInt("cID");
+				}
+				return cID;
+			}catch(SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("入力した内容に不備があります");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("入力した内容に不備があります");
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class DocumentAddServlet extends HttpServlet {
 		
 				
 				DocumentInfoBean list1 = dao.Add(isbn, cCode, dName, aName, pName, pDate);
-				int count1 = dao.CountDocument(dName);
+				int count1 = dao.CountDocument(dName,aName);
 				if(count1 >1) {
 					request.setAttribute("count", count1);
 					request.setAttribute("AddDocument", list1);
@@ -47,6 +47,9 @@ public class DocumentAddServlet extends HttpServlet {
 				}
 					
 				
+			}else {
+				request.setAttribute("message", "入力した内容に不備があります");
+				gotoPage(request, response, "/documentAddError.jsp");
 			}
 		}catch (DAOException e) {
 			e.printStackTrace();
