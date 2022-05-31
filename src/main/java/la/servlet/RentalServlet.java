@@ -28,10 +28,10 @@ public class RentalServlet extends HttpServlet {
 				int dID = Integer.parseInt(request.getParameter("dID"));
 				
 				if(dao.renIDCheck(dID) != 0 ) {
-					request.setAttribute("message", "すでに資料が貸出または予約されています");
+					request.setAttribute("message", "資料が貸出中です");
 					gotoPage(request,response,"/errorRental.jsp");
-				}else if(dao.resIDCheck(dID) !=0) {
-					request.setAttribute("message", "すでに資料が貸出または予約されています");
+				}else if(dao.resIDCheck(cID,dID)) {
+					request.setAttribute("message", "予約されている資料です");
 					gotoPage(request,response,"/errorRental.jsp");
 				}else if(dao.fivebooks(cID)) {
 					request.setAttribute("message", "既に5冊の資料を貸出しています\r\n"+ "先に返却してください");
@@ -62,7 +62,7 @@ public class RentalServlet extends HttpServlet {
 					request.setAttribute("dName",dao.getdName(dID));
 					request.setAttribute("message","以上の資料を返却しました");
 					
-					if(dao.resIDCheck(dID) !=0) {
+					if(dao.resCheck(dID)) {
 						request.setAttribute("resmessage","予約有り");
 					}
 					gotoPage(request,response,"/Return.jsp");
@@ -70,7 +70,7 @@ public class RentalServlet extends HttpServlet {
 			}
 		}catch(DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "内部エラーが発生しました");
+			request.setAttribute("message", "会員IDまたは資料IDを\r\n" + "正しく入力してください");
 			gotoPage(request,response,"/errorRental.jsp");
 		}
 	}
