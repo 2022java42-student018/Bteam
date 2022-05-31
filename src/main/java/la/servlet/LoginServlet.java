@@ -2,6 +2,7 @@ package la.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,27 +20,29 @@ public class LoginServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			LoginDAO dao = new LoginDAO();
+			String action = request.getParameter("action");
 
-			int oID = Integer.parseInt(request.getParameter("ID"));
-			String password = request.getParameter("pass");
+			if (action.equals("Login")) {
+				int oID = Integer.parseInt(request.getParameter("ID"));
+				String password = request.getParameter("pass");
 
-			if (dao.Check(oID, password)) {
-				gotoPage(request, response, "/TOP.jsp");
-			}else {
-				request.setAttribute("message", "ログインIDかパスワードが間違っています");
-				gotoPage(request,response,"/Loginerror.jsp");
+				if (dao.Check(oID, password)) {
+					gotoPage(request, response, "/TOP.jsp");
+				} else {
+					request.setAttribute("message", "ログインIDかパスワードが間違っています");
+					gotoPage(request, response, "/Loginerror.jsp");
+				}
 			}
-			
 		} catch (DAOException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "内部エラーが発生しました.");
 		}
 	}
 
-	
 	private void gotoPage(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
-		doGet(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher(page);
+		rd.forward(request, response);
 	}
 
 	/**

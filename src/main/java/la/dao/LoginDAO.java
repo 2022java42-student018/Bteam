@@ -21,17 +21,18 @@ public class LoginDAO {
 	}
 
 	public boolean Check(int oID, String oPassword) throws DAOException {
-		String sql = "SELECT oPass FROM owner WHERE oID = ?";
-		
+		String sql = "SELECT oPass FROM OWNER WHERE oID = ?";
 
 		try (Connection con = DriverManager.getConnection(url, user, pass);
 				PreparedStatement st = con.prepareStatement(sql);) {
 
 			st.setInt(1, oID);
-			;
 
 			try (ResultSet rs = st.executeQuery();) {
-				String password = rs.getString("oPass");
+				String password = null;
+				if (rs.next()) {
+					password = rs.getString("oPass");
+				}
 				boolean Check = false;
 
 				if (password.equals(oPassword)) {
@@ -44,8 +45,8 @@ public class LoginDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("ログインIDかパスワードが間違っています");
+			throw new DAOException("データベースエラー");
 		}
-		
+
 	}
 }
