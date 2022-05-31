@@ -29,14 +29,22 @@ public class CustomersearchServlet extends HttpServlet {
 			CustomersearchDAO dao = new CustomersearchDAO();
 			HttpSession session = request.getSession();
 
+			// dao.EmailSerch
 			if (action.equals("eMailSearch")) {
 				String eMail = request.getParameter("email");
-
 				CustomerBean bean = dao.emailSearch(eMail);
+				int err = dao.emailerr(eMail);
+
+				if (err == 0) {
+					request.setAttribute("message", "Emailが間違っています");
+					gotoPage(request, response, "/errorTOP.jsp");
+				}
+
 				session.setAttribute("cID", bean.getcID());
 				session.setAttribute("customer", bean);
-				gotoPage(request, response, "/Customerinfo.jsp");
-
+				if (bean != null) {
+					gotoPage(request, response, "/Customerinfo.jsp");
+				}
 			} else if (action.equals("rental")) {
 				int cID = Integer.parseInt(request.getParameter("cID"));
 				List<lend_docBean> list = dao.rend_doc(cID);
