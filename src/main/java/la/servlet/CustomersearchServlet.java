@@ -34,7 +34,7 @@ public class CustomersearchServlet extends HttpServlet {
 
 				CustomerBean bean = dao.emailSearch(eMail);
 				session.setAttribute("cID", bean.getcID());
-				request.setAttribute("customer", bean);
+				session.setAttribute("customer", bean);
 				gotoPage(request, response, "/Customerinfo.jsp");
 
 			} else if (action.equals("rental")) {

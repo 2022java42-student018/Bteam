@@ -13,7 +13,7 @@ import la.bean.historyBean;
 import la.bean.lend_docBean;
 
 public class CustomersearchDAO {
-	String url = "jdbc:postgresql:Bteam";
+	String url = "jdbc:postgresql:bteam";
 	String user = "student";
 	String pass = "himitu";
 

@@ -19,7 +19,7 @@
 		</c:forEach>
 	</table>
 	
-	<a href="/Bteam/showcustomer.jsp">会員情報へ</a>
+	<button type="button" onclick="history.back()">会員情報へ</button>
 	
 </body>
 </html>
