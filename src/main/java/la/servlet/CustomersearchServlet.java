@@ -61,7 +61,7 @@ public class CustomersearchServlet extends HttpServlet {
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "入力した内容に不備があります");
+			request.setAttribute("message", "内部エラーです");
 			gotoPage(request, response, "/errorTOP.jsp");
 		}
 	}

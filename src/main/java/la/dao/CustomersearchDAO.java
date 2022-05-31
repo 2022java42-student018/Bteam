@@ -49,7 +49,7 @@ public class CustomersearchDAO {
 				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります");
+				throw new DAOException("データセットエラー");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,11 +80,11 @@ public class CustomersearchDAO {
 				return list;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります");
+				throw new DAOException("リストエラー");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります");
+			throw new DAOException("データベースエラー");
 		}
 
 	}
@@ -110,11 +110,11 @@ public class CustomersearchDAO {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります");
+				throw new DAOException("データセットエラー");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります");
+			throw new DAOException("データベースエラー");
 		}
 	}
 	
@@ -140,11 +140,11 @@ public class CustomersearchDAO {
 				return bean;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DAOException("入力した内容に不備があります");
+				throw new DAOException("データセットエラー");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException("入力した内容に不備があります");
+			throw new DAOException("データベースエラー");
 		}
 	}
 
