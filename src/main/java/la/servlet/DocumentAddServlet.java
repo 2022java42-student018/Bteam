@@ -25,7 +25,6 @@ public class DocumentAddServlet extends HttpServlet {
 			String action = request.getParameter("action");
 			DocumentAddDAO dao = new DocumentAddDAO();
 			
-			
 			if(action.equals("add")) {
 				long isbn =Long.parseLong(request.getParameter("isbn"));
 				int cCode = Integer.parseInt(request.getParameter("cCode"));
